@@ -104,7 +104,7 @@ public class EditActionFragment extends Fragment {
 	
 	public EditActionFragment() {
 		super();
-		Log.w(TAG, "Created.");
+		// Log.w(TAG, "Created.");
 	}
 	
 	@Override
@@ -137,7 +137,7 @@ public class EditActionFragment extends Fragment {
 			
 			@Override
 			public boolean OnBackButtonPressed() {
-				Log.d(TAG, "back button is pressed.");
+				// Log.d(TAG, "back button is pressed.");
 				FetchDataFromControls();
 				return Save();
 			}
@@ -212,7 +212,7 @@ public class EditActionFragment extends Fragment {
 				FetchDataFromControls();
 				Save();
 			} catch(Exception e) {
-				Log.e(TAG, "Failed to save action");
+				// Log.e(TAG, "Failed to save action");
 				e.printStackTrace();
 				Toast.makeText(getActivity(), R.string.save_list_failed, Toast.LENGTH_LONG).show();
 			}
@@ -308,7 +308,7 @@ public class EditActionFragment extends Fragment {
 						resolver.update(Uri.parse(GtdContentProvider.ActionsDef.CONTENT_URI + "/" + action_id_), values, null, null);
 					}
 				} catch(Exception ex) {
-					Log.e(TAG, "Caught exception during save: " + ex.getMessage());
+					// Log.e(TAG, "Caught exception during save: " + ex.getMessage());
 					Toast.makeText(getActivity(), R.string.save_failed, Toast.LENGTH_LONG).show();
 				}
 
@@ -333,7 +333,7 @@ public class EditActionFragment extends Fragment {
 							}
 						}
 					} catch(Exception ex) {
-						Log.e(TAG, "Caught exception during save lof locations: " + ex.getMessage());
+						// Log.e(TAG, "Caught exception during save lof locations: " + ex.getMessage());
 						Toast.makeText(getActivity(), R.string.save_failed, Toast.LENGTH_SHORT).show();
 					}
 				}
@@ -373,7 +373,7 @@ public class EditActionFragment extends Fragment {
 			how_ = c.getInt(GtdContentProvider.ActionsDef.Fields.FOCUS_NEEDED.ordinal());
 			
 		} else {
-			Log.w(TAG, "Unable to get data for List #" + action_id_);
+			// Log.w(TAG, "Unable to get data for List #" + action_id_);
 		}
 		saved_ = false;
 	}

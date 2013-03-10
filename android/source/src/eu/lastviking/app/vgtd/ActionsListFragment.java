@@ -186,7 +186,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 				d.when_.SetTime(c.getLong(GtdContentProvider.ActionsDef.Fields.DUE_BY_TIME.ordinal()) * 1000, 
 					c.getInt(GtdContentProvider.ActionsDef.Fields.DUE_TYPE.ordinal()));
 			} catch(Exception ex) {
-				Log.e(TAG, "Failed to set time: " + ex.getMessage());
+				// Log.e(TAG, "Failed to set time: " + ex.getMessage());
 			}
 			
 			if (d.completed_) {
@@ -250,7 +250,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 			final boolean is_selected =  selected_.contains(c.getLong(GtdContentProvider.ActionsDef.Fields._ID.ordinal()));
 			d.selected_view_.setChecked(is_selected);
 			
-			//Log.d(TAG, "Item# " + d.id_ + " " + name + ": " + (d.completed_ ? "COMPLETE" : "pending"));
+			//// Log.d(TAG, "Item# " + d.id_ + " " + name + ": " + (d.completed_ ? "COMPLETE" : "pending"));
 		}
 
 		@Override
@@ -281,7 +281,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 		}
 		
 		void Select(final long id, final boolean selected ) {
-			Log.d(TAG, (selected ? "Selected " : "Unselected ") + id);
+			// Log.d(TAG, (selected ? "Selected " : "Unselected ") + id);
 			final boolean was_empty = selected_.isEmpty(); 
 			if (selected) {
 				selected_.add(id);
@@ -295,7 +295,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 		}
 		
 		void Expand(final long id, final boolean selected ) {
-			Log.d(TAG, (selected ? "Expanded " : "Unexpanded ") + id);
+			// Log.d(TAG, (selected ? "Expanded " : "Unexpanded ") + id);
 			if (selected) {
 				expanded_.add(id);
 			} else {
@@ -353,7 +353,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 		@Override
 		public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 			
-			Log.d(TAG, "LoaderMgr: onCreateLoader called for loader id " + id);
+			// Log.d(TAG, "LoaderMgr: onCreateLoader called for loader id " + id);
 			
 			Uri uri = GetUriForDbQuery();
 			
@@ -367,7 +367,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 					filter = filter + GtdContentProvider.ActionsDef.NAME  + " LIKE ?";
 				} 
 				try {
-					Log.d(TAG, "Executing query: " + filter );
+					// Log.d(TAG, "Executing query: " + filter );
 					return new CursorLoader(getActivity(), uri, GetDbProjection() ,
 							filter, 
 							filter_args,
@@ -376,7 +376,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 									+ GtdContentProvider.ActionsDef.DUE_BY_TIME + " ASC, "
 									+ GtdContentProvider.ActionsDef.CREATED_DATE + " ASC"*/);
 				} catch(Exception ex) {
-					Log.e(TAG, "Query failed: " + ex.getMessage());
+					// Log.e(TAG, "Query failed: " + ex.getMessage());
 				}
 			}
 
@@ -385,14 +385,14 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 
 		@Override
 		public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-			Log.d(TAG, "LoaderMgr: onLoadFinished called.");
+			// Log.d(TAG, "LoaderMgr: onLoadFinished called.");
 			adapter_.swapCursor(cursor);
 			ready_to_requery_ = true;
 		}
 
 		@Override
 		public void onLoaderReset(Loader<Cursor> cursor) {
-			Log.d(TAG, "LoaderMgr: onLoaderReset called.");
+			// Log.d(TAG, "LoaderMgr: onLoaderReset called.");
 			if (null != adapter_) {
 				adapter_.swapCursor(null);
 			}
@@ -408,7 +408,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 		try {
 			view = inflater.inflate(R.layout.actions_list_fragment, container, false);
 		} catch(Exception ex) {
-			Log.e(TAG, "Failed to inflate fragment: " + ex.getMessage());
+			// Log.e(TAG, "Failed to inflate fragment: " + ex.getMessage());
 		}
 		return view;
 	}
@@ -421,7 +421,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 		try {
 			setHasOptionsMenu(true);
 		} catch(Exception ex) {
-			Log.e(TAG, "Failed to create menu: " + ex.getMessage());
+			// Log.e(TAG, "Failed to create menu: " + ex.getMessage());
 		}
 
 		adapter_ = new ActionItemAdapter(getActivity(), CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
@@ -507,7 +507,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 				}
 			}
 		} catch(Exception ex) {
-			Log.e(TAG, "Caught exception while modifying the context menu: " + ex.getMessage());
+			// Log.e(TAG, "Caught exception while modifying the context menu: " + ex.getMessage());
 		}
 	}
 
@@ -524,7 +524,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 			Intent intent = new Intent();
 			final long selected_id = info.id;
 			if (selected_id == ListView.INVALID_ROW_ID) {
-				Log.w(TAG, "No List item selected");
+				// Log.w(TAG, "No List item selected");
 			} else {
 				EditAction(selected_id);
 			}
@@ -534,7 +534,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 		{
 			final long selected_id = info.id;
 			if (selected_id == ListView.INVALID_ROW_ID) {
-				Log.w(TAG, "No List item selected");
+				// Log.w(TAG, "No List item selected");
 			} else {
 				DeleteAction(selected_id);
 			}
@@ -617,7 +617,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 						}
 						filter.append(")");
 						if (!virgin) {
-							Log.d(TAG, "Query: " + filter.toString());
+							// Log.d(TAG, "Query: " + filter.toString());
 							resolver.update(GtdContentProvider.ActionsDef.CONTENT_URI, values, filter.toString(), null);
 						}
 						adapter_.selected_.clear();
@@ -714,7 +714,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 				}
 				filter.append(")");
 				if (!virgin) {
-					Log.d(TAG, "Query: " + filter.toString());
+					// Log.d(TAG, "Query: " + filter.toString());
 					resolver.update(GtdContentProvider.ActionsDef.CONTENT_URI, values, filter.toString(), null);
 				}
 				adapter_.selected_.clear();
@@ -758,7 +758,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		Log.d(TAG, "Item clicked: " + id);
+		// Log.d(TAG, "Item clicked: " + id);
 		EditAction(id);
 	}
 	

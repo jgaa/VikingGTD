@@ -48,7 +48,7 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
 		@Override
 		public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 			
-			Log.d(TAG, "LoaderMgr: onCreateLoader called for loader id " + id);
+			// Log.d(TAG, "LoaderMgr: onCreateLoader called for loader id " + id);
 			
 			Uri uri = GtdContentProvider.ListsDef.CONTENT_URI;
 			
@@ -69,13 +69,13 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
 
 		@Override
 		public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-			Log.d(TAG, "LoaderMgr: onLoadFinished called.");
+			// Log.d(TAG, "LoaderMgr: onLoadFinished called.");
 			adapter_.swapCursor(cursor);
 		}
 
 		@Override
 		public void onLoaderReset(Loader<Cursor> cursor) {
-			Log.d(TAG, "LoaderMgr: onLoaderReset called.");
+			// Log.d(TAG, "LoaderMgr: onLoaderReset called.");
 			adapter_.swapCursor(null);
 			
 		}
@@ -156,7 +156,7 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
 			Intent intent = new Intent();
 			final long selected_id = info.id;
 			if (selected_id == ListView.INVALID_ROW_ID) {
-				Log.w(TAG, "No List item selected");
+				// Log.w(TAG, "No List item selected");
 			} else {
 				intent.putExtra("id", selected_id);
 				intent.setClass(getActivity(), EditList.class);
@@ -168,7 +168,7 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
 		{
 			final long selected_id = info.id;
 			if (selected_id == ListView.INVALID_ROW_ID) {
-				Log.w(TAG, "No List item selected");
+				// Log.w(TAG, "No List item selected");
 			} else {
 				DeleteList(selected_id);
 			}
@@ -232,7 +232,7 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-    	Log.d(TAG, "Item clicked: " + id);
+    	// Log.d(TAG, "Item clicked: " + id);
         showDetails(position, id, ((TextView)v).getText().toString());
     }
 

@@ -150,7 +150,7 @@ class When extends Object implements Serializable
 				;
 			}
 		} catch(NoDateException ex) {
-			Log.e(TAG, "Caught NoDateException: " + ex.getMessage());
+			// Log.e(TAG, "Caught NoDateException: " + ex.getMessage());
 			return ex.getMessage();
 		}
 
@@ -218,7 +218,7 @@ class When extends Object implements Serializable
 			dt = DueTypes.TIME;
 			break;
 		default:
-			Log.e(TAG, "When(): Invalid time type: " + type);
+			// Log.e(TAG, "When(): Invalid time type: " + type);
 			throw new IllegalArgumentException(Integer.toString(type));
 		}
 		SetTime(ms, dt);

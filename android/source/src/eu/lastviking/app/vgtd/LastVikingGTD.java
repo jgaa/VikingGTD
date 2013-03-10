@@ -31,13 +31,13 @@ public class LastVikingGTD extends Application {
 	
 	public void TerminateWithError(final String message) {
 		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-		//Log.e("Application ABORT", message);
+		//// Log.e("Application ABORT", message);
 		//System.exit(-1);
 	}
 	
 	public String ReadAssetFile(final String path) throws IOException
 	{
-		Log.d(LOG_TAG, "Reading asset file '" + path + "'");
+		// Log.d(LOG_TAG, "Reading asset file '" + path + "'");
 		InputStream stream = getAssets().open(path);
 		int size = stream.available();
 		byte[] buffer = new byte[size];

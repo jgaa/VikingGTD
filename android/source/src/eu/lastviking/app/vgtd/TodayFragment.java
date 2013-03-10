@@ -39,7 +39,7 @@ public class TodayFragment extends ActionsListFragment {
 		
 		filter.append(" AND " + GtdContentProvider.ActionsDef.DUE_BY_TIME + " < " + (to.getTimeInMillis() / 1000) + ")");
 		
-		Log.d(TAG, "Filter: " + filter.toString());
+		// Log.d(TAG, "Filter: " + filter.toString());
 		return filter.toString();
     }
 	

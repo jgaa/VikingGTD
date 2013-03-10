@@ -119,7 +119,7 @@ public class PickFragment extends ActionsListFragment {
 			
 			InitializeFilterControls();
 		} catch(Exception ex) {
-			Log.e(TAG, "Failed to inflate the view: " + ex.getMessage());
+			// Log.e(TAG, "Failed to inflate the view: " + ex.getMessage());
 		}
 		
 		filters_.setBackgroundColor(Color.rgb(230, 230, 255));

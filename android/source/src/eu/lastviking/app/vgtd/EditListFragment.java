@@ -57,7 +57,7 @@ public class EditListFragment extends Fragment {
 			
 			@Override
 			public boolean OnBackButtonPressed() {
-				Log.d(TAG, "back button is pressed.");
+				// Log.d(TAG, "back button is pressed.");
 				return Save();
 			}
 		});
@@ -74,7 +74,7 @@ public class EditListFragment extends Fragment {
 			try {
 				Save();
 			} catch(Exception e) {
-				Log.e(TAG, "Failed to save list");
+				// Log.e(TAG, "Failed to save list");
 				e.printStackTrace();
 				Toast.makeText(getActivity(), R.string.save_list_failed, Toast.LENGTH_LONG).show();
 			}
@@ -179,7 +179,7 @@ public class EditListFragment extends Fragment {
 			name_.setText(name);
 			descr_.setText(descr);
 		} else {
-			Log.w(TAG, "Unable to get data for List #" + edit_id_);
+			// Log.w(TAG, "Unable to get data for List #" + edit_id_);
 		}
 		saved_ = false;
 	}

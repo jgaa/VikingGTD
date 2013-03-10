@@ -165,7 +165,7 @@ public class MainView extends Activity {
 						}
 					});
 				}  catch(final Exception ex) {
-					Log.e(TAG, "Caught exeption during backup: " + ex.getMessage());
+					// Log.e(TAG, "Caught exeption during backup: " + ex.getMessage());
 
 					handler_.post(new Runnable() {
 						@Override
@@ -238,7 +238,7 @@ public class MainView extends Activity {
 								}
 							});
 						}  catch(final Exception ex) {
-							Log.e(TAG, "Caught exeption during restore: " + ex.getMessage());
+							// Log.e(TAG, "Caught exeption during restore: " + ex.getMessage());
 
 							handler_.post(new Runnable() {
 								@Override
@@ -298,7 +298,7 @@ public class MainView extends Activity {
 							importer.Import();
 
 						} catch(final Exception ex) {
-							Log.e(TAG, "Caught exeption during import: " + ex.getMessage());
+							// Log.e(TAG, "Caught exeption during import: " + ex.getMessage());
 
 							handler_.post(new Runnable() {
 								@Override

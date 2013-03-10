@@ -205,7 +205,7 @@ public class GtdContentProvider extends ContentProvider {
 			} 
 			// s.th. went wrong:
 			final String msg = "Problem while inserting into " + table_ + ", uri: " + uri;
-			Log.e(TAG, msg);
+			// Log.e(TAG, msg);
 			
 			throw new SQLException(msg); // use another exception here!!!
 		}
@@ -256,7 +256,7 @@ public class GtdContentProvider extends ContentProvider {
 			
 			builder.setDistinct(distinct_);
 			
-			//Log.d(TAG, "Queryin '" + table_ + "' :" + (null == selectionArgs ? "" : selectionArgs.toString()));
+			//// Log.d(TAG, "Queryin '" + table_ + "' :" + (null == selectionArgs ? "" : selectionArgs.toString()));
 			
 			Cursor cursor = builder.query(db_.GetDb(), projection, selection, selectionArgs, null, null, sortOrder); 
 			   cursor.setNotificationUri(getContext().getContentResolver(), uri); 
@@ -611,7 +611,7 @@ public class GtdContentProvider extends ContentProvider {
 
 		@Override
 		public int delete(Uri uri, String selection, String[] selectionArgs) {
-			Log.w(TAG, "Resetting database. Most data will be lost");
+			// Log.w(TAG, "Resetting database. Most data will be lost");
 			
 			db_.ResetDatabase();
 			
@@ -645,11 +645,11 @@ public class GtdContentProvider extends ContentProvider {
 	@Override
 	public boolean onCreate() {
 		
-		Log.d(TAG, "GTD Content provider created.");
+		// Log.d(TAG, "GTD Content provider created.");
 		
 		db_ = new DbAdapter(this);
         if (!db_.Open()) {
-        	Log.e(TAG, "Failed to open the database or the database was not writeable");
+        	// Log.e(TAG, "Failed to open the database or the database was not writeable");
         	db_.Close();
         	return false;
         }
@@ -670,7 +670,7 @@ public class GtdContentProvider extends ContentProvider {
 	public void shutdown() {
 		super.shutdown();
 		
-		Log.d(TAG, "Shutting down the GTD content propvider");
+		// Log.d(TAG, "Shutting down the GTD content propvider");
 		db_.Close();
 		db_ = null;
 	}
@@ -690,13 +690,13 @@ public class GtdContentProvider extends ContentProvider {
 	
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
-		//Log.d(TAG, "Deleting data with uri: " + uri + ", selection: " + selection);
+		//// Log.d(TAG, "Deleting data with uri: " + uri + ", selection: " + selection);
 		return GetHelper(uri).delete(uri, selection, selectionArgs);
 	}
 
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
-		//Log.d(TAG, "Inserting data with uri: " + uri + ", values: " + values.toString());
+		//// Log.d(TAG, "Inserting data with uri: " + uri + ", values: " + values.toString());
 		return GetHelper(uri).insert(uri, values);
 	}
 
@@ -709,7 +709,7 @@ public class GtdContentProvider extends ContentProvider {
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
-		//Log.d(TAG, "Updating data with uri: " + uri + ", values: " + values.toString());
+		//// Log.d(TAG, "Updating data with uri: " + uri + ", values: " + values.toString());
 		return GetHelper(uri).update(uri, values, selection, selectionArgs);
 	}
 	
@@ -728,7 +728,7 @@ public class GtdContentProvider extends ContentProvider {
 	
 	public String ReadAssetFile(final String path) throws IOException
 	{
-		Log.d(TAG, "Reading asset file '" + path + "'");
+		// Log.d(TAG, "Reading asset file '" + path + "'");
 		InputStream stream = getContext().getAssets().open(path);
 		int size = stream.available();
 		byte[] buffer = new byte[size];

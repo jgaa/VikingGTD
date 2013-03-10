@@ -57,14 +57,14 @@ public class DbAdapter {
 		public void onCreate(SQLiteDatabase db) {
 			String script;
 			
-			Log.i(LastVikingGTD.LOG_TAG, "Creating database");
+			// Log.i(LastVikingGTD.LOG_TAG, "Creating database");
 			
 			try {
 				
 				script = cp_.ReadAssetFile("vGTD.sql");
 				//script = LastVikingGTD.GetInstance().ReadAssetFile("vGTD.sql");
 			} catch (Exception e) {
-				Log.e(LastVikingGTD.LOG_TAG, "Failed to read database definition");
+				// Log.e(LastVikingGTD.LOG_TAG, "Failed to read database definition");
 				e.printStackTrace();
 				return;
 			}
@@ -87,14 +87,14 @@ public class DbAdapter {
 						query = query.trim();
 						q = query;
 						if (query.length() > 0) {
-							Log.d("SQL query", query);
+							// Log.d("SQL query", query);
 							db.execSQL(query);
 						}
 					}
 			    }
 			} catch (SQLException e) {
-				Log.e(LastVikingGTD.LOG_TAG, "Failed to create database!");
-				Log.e(LastVikingGTD.LOG_TAG, "This SQL astatement failed: '" + q + "'");
+				// Log.e(LastVikingGTD.LOG_TAG, "Failed to create database!");
+				// Log.e(LastVikingGTD.LOG_TAG, "This SQL astatement failed: '" + q + "'");
 				e.printStackTrace();
 				LastVikingGTD.GetInstance().TerminateWithError("Failed to create database");
 			}
@@ -105,8 +105,7 @@ public class DbAdapter {
 			
 			// TODO Backup and restore the database!
 			
-			Log.w(LastVikingGTD.LOG_TAG, "Upgrading database from version " + oldVersion + " to "
-					+ newVersion + ", which will destroy all old data");
+			// Log.w(LastVikingGTD.LOG_TAG, "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
 			onCreate(db);
 		}
 	}
@@ -121,12 +120,12 @@ public class DbAdapter {
 
 	Boolean Open()
 	{
-		Log.d(LastVikingGTD.LOG_TAG, "Opening database");
+		// Log.d(LastVikingGTD.LOG_TAG, "Opening database");
 		
 		try {
 			db_ = h_.getWritableDatabase();
 		} catch(Exception e) {
-			Log.e(LastVikingGTD.LOG_TAG, "Failed to open database!");
+			// Log.e(LastVikingGTD.LOG_TAG, "Failed to open database!");
 			e.printStackTrace();
 		}
 		return (null != db_) && !db_.isReadOnly();
@@ -134,7 +133,7 @@ public class DbAdapter {
 	
 	void Close()
 	{
-		Log.d(LastVikingGTD.LOG_TAG, "Closing database");
+		// Log.d(LastVikingGTD.LOG_TAG, "Closing database");
 		h_.close();
 		db_ = null;
 	}

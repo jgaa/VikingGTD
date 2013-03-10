@@ -205,7 +205,7 @@ public class XmlBackupRestore {
 			}
 			
 		} catch (Exception ex) { 
-			Log.e(TAG, "Caught exception: " + ex.getMessage());
+			// Log.e(TAG, "Caught exception: " + ex.getMessage());
 		} finally {
 			if (null != is) {
 				try {
@@ -466,7 +466,7 @@ public class XmlBackupRestore {
 		            name = x.getName();
 		            if (name.equals("row")) {
 		            	ContentValues cv = GetRowValues(x);
-		            	Log.d(TAG, "Restoring " + table + ": " + cv.toString());
+		            	// Log.d(TAG, "Restoring " + table + ": " + cv.toString());
 		            	resolver.insert(uri, cv);
 		            } else {
 		            	Skip(x);
