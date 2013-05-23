@@ -79,7 +79,7 @@ public class WhenFragment extends Fragment {
 		try {
 			view = inflater.inflate(R.layout.when_fragment, container, false);
 		} catch(Exception ex) {
-			// Log.e(TAG, "Failed to inflate the view: " + ex.getMessage());
+			Log.e(TAG, "Failed to inflate the view: " + ex.getMessage());
 			//throw ex;
 			return null;
 		}
@@ -183,7 +183,7 @@ public class WhenFragment extends Fragment {
 				if (YEAR_OFFSET < year) {
 					Calendar c = when_.GetDateOrNow();
 					c.set(Calendar.YEAR, year);
-					// Log.d(TAG, "Setting year " + year);
+					Log.d(TAG, "Setting year " + year);
 					when_.SetTime(c.getTimeInMillis(), When.DueTypes.YEAR);
 				} else {
 					when_.SetTime(0, When.DueTypes.NONE);
@@ -203,7 +203,7 @@ public class WhenFragment extends Fragment {
 				if (0 <= month) {
 					c.set(Calendar.MONTH, (int)month);
 					when_.SetTime(c.getTimeInMillis(), When.DueTypes.MONTH);
-					// Log.d(TAG, "Setting month " + month);
+					Log.d(TAG, "Setting month " + month);
 				} else if (-1 == month) {
 					when_.SetTime(c.getTimeInMillis(), When.DueTypes.YEAR);
 				}
@@ -239,7 +239,7 @@ public class WhenFragment extends Fragment {
 						if (which == DialogInterface.BUTTON_POSITIVE) {
 							Calendar nc = when_.GetDateOrNow();
 							
-							// Log.d(TAG, "Setting date");
+							Log.d(TAG, "Setting date");
 							
 							DatePicker dp = ((DatePickerDialog)dialog).getDatePicker();
 							nc.set(Calendar.YEAR, dp.getYear());
@@ -290,9 +290,9 @@ public class WhenFragment extends Fragment {
 							when_.SetTime(nc.getTimeInMillis(), When.DueTypes.TIME);
 							SetAllFields();
 
-							// Log.d(TAG, "Setting time: " + hourOfDay + ":" + minute);
+							Log.d(TAG, "Setting time: " + hourOfDay + ":" + minute);
 						} else {
-							// Log.d(TAG, "Setting time: **cancelled**");
+							Log.d(TAG, "Setting time: **cancelled**");
 						}
 					}
 					

@@ -57,7 +57,7 @@ public class ImportFromTaskList implements Import {
 			DoImport(parser);
 			
 		} catch (Exception ex) { 
-			// Log.e(TAG, "Caught exception: " + ex.getMessage());
+			Log.e(TAG, "Caught exception: " + ex.getMessage());
 		} finally {
 			if (null != is) {
 				try {

@@ -14,7 +14,7 @@ public class EditList extends VikingBackHandlerActivity
 		try {
 			setContentView(R.layout.edit_list);
 		} catch(Exception ex) {
-			// Log.e(TAG, "Caught exception when inflating: " + ex.toString());
+			Log.e(TAG, "Caught exception when inflating: " + ex.toString());
 		}
 	}
 }

@@ -41,6 +41,7 @@ public class XmlBackupRestore {
 			throws IllegalArgumentException, IllegalStateException, IOException {
 		File my_path = new File(path.getPath() + ".tmp");
 		FileOutputStream file = new FileOutputStream(my_path);
+		Log.d(TAG, "Will backup to path: " + my_path.toString());
 
 		XmlSerializer x = Xml.newSerializer();
 		ContentResolver resolver = ctx.getContentResolver();
@@ -205,7 +206,7 @@ public class XmlBackupRestore {
 			}
 			
 		} catch (Exception ex) { 
-			// Log.e(TAG, "Caught exception: " + ex.getMessage());
+			Log.e(TAG, "Caught exception: " + ex.getMessage());
 		} finally {
 			if (null != is) {
 				try {
@@ -466,7 +467,7 @@ public class XmlBackupRestore {
 		            name = x.getName();
 		            if (name.equals("row")) {
 		            	ContentValues cv = GetRowValues(x);
-		            	// Log.d(TAG, "Restoring " + table + ": " + cv.toString());
+		            	Log.d(TAG, "Restoring " + table + ": " + cv.toString());
 		            	resolver.insert(uri, cv);
 		            } else {
 		            	Skip(x);

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eu.lastviking.app.vgtd"
-    android:versionCode="1"
-    android:versionName="0.01 BETA" >
+    android:versionCode="2"
+    android:versionName="0.02 BETA" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -17,6 +17,7 @@
         android:theme="@style/AppTheme" 
         android:name="eu.lastviking.app.vgtd.LastVikingGTD"
         android:configChanges="orientation"
+        android:debuggable="true" 
         android:allowBackup="true">
         <activity
             android:name=".MainView"

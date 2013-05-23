@@ -19,10 +19,10 @@ public class VikingBackHandlerActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		if ((null != handler_) && !handler_.OnBackButtonPressed()) {
-			// Log.d(TAG, "Back button ignored");
+			Log.d(TAG, "Back button ignored");
 			
 		} else {
-			// Log.d(TAG, "Back button OK");
+			Log.d(TAG, "Back button OK");
 			super.onBackPressed();
 		}
 	}

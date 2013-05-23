@@ -6,6 +6,7 @@
     <string name="no_lists">You must create one or more lists in order to get started.\n
         For example \"Work\", \"Home improvement\", \"Hobbies\", \"Self improvement\" etc.\n
         Use the Add icon in the menu above to add a new list.</string>
+    <string name="loading_lists">Loading the lists. Please wait...</string>
     <string name="search">Search</string>
     <string name="add">Add</string>
     <string name="anywhere">Anywhere</string>
@@ -28,6 +29,7 @@
 	<string name="save_list_failed">Could not save the list. Is it\'s name already in use?</string>
 	<string name="save_location_failed">Could not save the location. Is it\'s name already in use?</string>
 	<string name="no_actions">You must create one or more actions in order to get started with this list.</string>
+	<string name="loading_actions">Loading actions. Please wait...</string>
 	<string name="actions">Actions</string>
 	<string name="action">Action</string>
 	<string name="priority">Priority</string>

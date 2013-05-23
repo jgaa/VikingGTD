@@ -39,23 +39,31 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
 	private final static String TAG = "ListsFragment";
 	
     protected int cur_list_position_ = 0;
-    private LoaderMgr lm_;
-    protected SimpleCursorAdapter adapter_; 
-    protected String search_string_;
+    protected SimpleCursorAdapter adapter_;
+    protected String search_string_ = "";
+    static int lm_instance_cnt_ = 0;
+    protected LoaderMgr lm_ = null;
     
     private class LoaderMgr implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    	private int instance_id_ = 0;
+    	
+    	LoaderMgr() {
+    		instance_id_ = ++lm_instance_cnt_;
+    	}
+    	
 		@Override
 		public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 			
-			// Log.d(TAG, "LoaderMgr: onCreateLoader called for loader id " + id);
+			MySetEmptyTest(getResources().getString(R.string.loading_lists));
+			Log.d(TAG, "LoaderMgr: onCreateLoader #" + instance_id_ + " called for loader id " + id);
 			
 			Uri uri = GtdContentProvider.ListsDef.CONTENT_URI;
 			
 			if (LOADER_LISTS == id) {
 				String[] filter_args = null;
 				String filter = null;
-				if (null != search_string_) {
+				if (!search_string_.isEmpty()) {
 					filter_args = new String[] {"%" + search_string_ + "%"};
 					filter = GtdContentProvider.ListsDef.NAME  + " LIKE ?";
 				} 
@@ -69,21 +77,21 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
 
 		@Override
 		public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-			// Log.d(TAG, "LoaderMgr: onLoadFinished called.");
+			Log.d(TAG, "LoaderMgr #" + instance_id_ + ": onLoadFinished called.");
 			adapter_.swapCursor(cursor);
+			MySetEmptyTest(getResources().getString(R.string.no_lists));
 		}
 
 		@Override
 		public void onLoaderReset(Loader<Cursor> cursor) {
-			// Log.d(TAG, "LoaderMgr: onLoaderReset called.");
+			Log.d(TAG, "LoaderMgr #" + instance_id_ + ": onLoaderReset called.");
 			adapter_.swapCursor(null);
-			
+			MySetEmptyTest(getResources().getString(R.string.loading_lists));
 		}
     }
     
     
     
-
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -103,7 +111,7 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
                 new int[] { android.R.id.text1 }, 0);
         
         setListAdapter(adapter_);
-        
+                
         getLoaderManager().initLoader(LOADER_LISTS, null, lm_ = new LoaderMgr());
         
         
@@ -115,6 +123,15 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
         registerForContextMenu(getListView());
     }
     
+	void MySetEmptyTest(String text) {
+		View view = this.getView();
+		if (null != view) {
+			TextView tv = (TextView)view.findViewById(android.R.id.empty);
+			if (null != tv) {
+				tv.setText(text);
+			}
+		}
+	}
     
     @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {        	
         inflater.inflate(R.menu.lists, menu);
@@ -156,7 +173,7 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
 			Intent intent = new Intent();
 			final long selected_id = info.id;
 			if (selected_id == ListView.INVALID_ROW_ID) {
-				// Log.w(TAG, "No List item selected");
+				Log.w(TAG, "No List item selected");
 			} else {
 				intent.putExtra("id", selected_id);
 				intent.setClass(getActivity(), EditList.class);
@@ -168,7 +185,7 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
 		{
 			final long selected_id = info.id;
 			if (selected_id == ListView.INVALID_ROW_ID) {
-				// Log.w(TAG, "No List item selected");
+				Log.w(TAG, "No List item selected");
 			} else {
 				DeleteList(selected_id);
 			}
@@ -214,7 +231,14 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
         // Called when the action bar search text has changed.  Update
         // the search filter, and restart the loader to do a new query
         // with this filter.
-    	search_string_ = !TextUtils.isEmpty(newText) ? newText : null;
+				
+		if (search_string_.equals(newText)) {
+			Log.d(TAG, "onQueryTextChange: Android is lying to me. The search-string has not changed!");
+			return true;
+		}
+		
+		Log.d(TAG, "onQueryTextChange: " + newText);
+    	search_string_ = newText;
         getLoaderManager().restartLoader(LOADER_LISTS, null, lm_);
         return true;
     }
@@ -232,7 +256,7 @@ public class ListsFragment extends ListFragment implements OnQueryTextListener {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-    	// Log.d(TAG, "Item clicked: " + id);
+    	Log.d(TAG, "Item clicked: " + id);
         showDetails(position, id, ((TextView)v).getText().toString());
     }
 

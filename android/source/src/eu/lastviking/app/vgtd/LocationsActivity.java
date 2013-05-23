@@ -40,7 +40,7 @@ public class LocationsActivity extends ListActivity {
 		@Override
 		public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 			
-			// Log.d(TAG, "LoaderMgr: onCreateLoader called for loader id " + id);
+			Log.d(TAG, "LoaderMgr: onCreateLoader called for loader id " + id);
 						
 			if (LOADER_LOCATIONS == id) {
 
@@ -48,7 +48,7 @@ public class LocationsActivity extends ListActivity {
 					return new CursorLoader(GetContext(), LocationsDef.CONTENT_URI, LocationsDef.PROJECTION_ALL, 
 							null, null, LocationsDef.NAME+ " ASC");
 				} catch(Exception ex) {
-					// Log.e(TAG, "Query failed: " + ex.getMessage());
+					Log.e(TAG, "Query failed: " + ex.getMessage());
 				}
 			}
 
@@ -57,13 +57,13 @@ public class LocationsActivity extends ListActivity {
 
 		@Override
 		public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-			// Log.d(TAG, "LoaderMgr: onLoadFinished called.");
+			Log.d(TAG, "LoaderMgr: onLoadFinished called.");
 			adapter_.swapCursor(cursor);
 		}
 
 		@Override
 		public void onLoaderReset(Loader<Cursor> cursor) {
-			// Log.d(TAG, "LoaderMgr: onLoaderReset called.");
+			Log.d(TAG, "LoaderMgr: onLoaderReset called.");
 			if (null != adapter_) {
 				adapter_.swapCursor(null);
 			}
@@ -177,7 +177,7 @@ public class LocationsActivity extends ListActivity {
 		try {
 			getContentResolver().delete(Uri.parse(GtdContentProvider.LocationsDef.CONTENT_URI + "/" + id), null, null);
 		} catch(Exception ex) {
-			// Log.e(TAG, "Failed to delete: " + ex.getMessage());
+			Log.e(TAG, "Failed to delete: " + ex.getMessage());
 		}
 	}
 

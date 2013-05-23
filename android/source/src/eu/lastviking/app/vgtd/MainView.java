@@ -55,8 +55,10 @@ public class MainView extends Activity {
 	        if ((null == fragment_) && ((fragment_ = self_.getFragmentManager().findFragmentByTag(tag_)) == null)){
 	            fragment_ = Fragment.instantiate(activity_, class_.getName());
 	            ft.add(R.id.main_view_content, fragment_, tag_);
+	            Log.d(TAG, "Adding a new fragment list for tab " + tag_);
 	        } else {
 	            ft.attach(fragment_);
+	            Log.d(TAG, "Recycling a fragment list for tab " + tag_);
 	        }
 	    }
 
@@ -165,7 +167,7 @@ public class MainView extends Activity {
 						}
 					});
 				}  catch(final Exception ex) {
-					// Log.e(TAG, "Caught exeption during backup: " + ex.getMessage());
+					Log.e(TAG, "Caught exeption during backup: " + ex.getMessage());
 
 					handler_.post(new Runnable() {
 						@Override
@@ -238,7 +240,7 @@ public class MainView extends Activity {
 								}
 							});
 						}  catch(final Exception ex) {
-							// Log.e(TAG, "Caught exeption during restore: " + ex.getMessage());
+							Log.e(TAG, "Caught exeption during restore: " + ex.getMessage());
 
 							handler_.post(new Runnable() {
 								@Override
@@ -298,7 +300,7 @@ public class MainView extends Activity {
 							importer.Import();
 
 						} catch(final Exception ex) {
-							// Log.e(TAG, "Caught exeption during import: " + ex.getMessage());
+							Log.e(TAG, "Caught exeption during import: " + ex.getMessage());
 
 							handler_.post(new Runnable() {
 								@Override

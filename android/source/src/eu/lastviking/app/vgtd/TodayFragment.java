@@ -3,6 +3,7 @@ package eu.lastviking.app.vgtd;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +20,6 @@ public class TodayFragment extends ActionsListFragment {
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.today_list_fragment, container, false);
 	}
-	
 
 	@Override
 	public String GetBaseFilterForDbQuery() {
@@ -39,7 +39,7 @@ public class TodayFragment extends ActionsListFragment {
 		
 		filter.append(" AND " + GtdContentProvider.ActionsDef.DUE_BY_TIME + " < " + (to.getTimeInMillis() / 1000) + ")");
 		
-		// Log.d(TAG, "Filter: " + filter.toString());
+		Log.d(TAG, "Filter: " + filter.toString());
 		return filter.toString();
     }
 	
@@ -56,5 +56,14 @@ public class TodayFragment extends ActionsListFragment {
 	@Override
 	boolean IsListTodayOnly() {
     	return true;
+    }
+	
+	@Override
+	String GetEmptyListText() {
+    	Resources r = getResources();
+    	if (null != r) {
+    		return getResources().getString(R.string.no_actions_today);
+    	}
+    	return "";
     }
 }
