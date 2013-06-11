@@ -26,6 +26,9 @@ CREATE TABLE "actions" (
     "time_estimate" INTEGER,
     "focus_needed" INTEGER NOT NULL DEFAULT (3),
     "related_to" TEXT,
+	"repeat_type" INTEGER NOT NULL DEFAULT(0),
+	"repeat_unit" INTEGER NOT NULL DEFAULT(0),
+	"repeat_after" INTEGER NOT NULL DEFAULT(0),
     FOREIGN KEY(list_id) REFERENCES lists(_id) ON DELETE CASCADE
 );
 CREATE TABLE "todos" (

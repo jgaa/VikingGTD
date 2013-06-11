@@ -1,5 +1,6 @@
 package eu.lastviking.app.vgtd;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import android.content.Context;
 import android.database.Cursor;
@@ -16,7 +17,7 @@ public class DbAdapter {
 
 	protected static final String TAG = "DbAdapter"; 
 	static final String DATABASE_NAME = "vGTD";
-	static final int DATABASE_VERSION = 1;
+	static final int DATABASE_VERSION = 2;
 	
 	public static String LISTS_TABLE = "lists";
 	public static String ACTIONS_TABLE = "actions";
@@ -60,9 +61,7 @@ public class DbAdapter {
 			Log.i(LastVikingGTD.LOG_TAG, "Creating database");
 			
 			try {
-				
 				script = cp_.ReadAssetFile("vGTD.sql");
-				//script = LastVikingGTD.GetInstance().ReadAssetFile("vGTD.sql");
 			} catch (Exception e) {
 				Log.e(LastVikingGTD.LOG_TAG, "Failed to read database definition");
 				e.printStackTrace();
@@ -103,10 +102,38 @@ public class DbAdapter {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			
-			// TODO Backup and restore the database!
+			// TODO Backup the database!
 			
-			Log.w(LastVikingGTD.LOG_TAG, "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
-			onCreate(db);
+			// The upgrade scripts are named after the database version they upgrade from.
+			// So in order to upgrade to version 2, we will run script 1.
+			
+			for(int version = oldVersion; version < newVersion; ++version) {
+				String q = "***";
+				final int update_to = version + 1;
+				Log.i(LastVikingGTD.LOG_TAG, "Upgrading database from version " + version + " to " + update_to);
+				try {
+					String script = cp_.ReadAssetFile("vGTD_upgrade_" + version + ".sql");
+					String[] queries = script.split(";");
+					for(String query : queries){
+						if (null != query) {
+							query = query.trim();
+							q = query;
+							if (query.length() > 0) {
+								Log.d("SQL query", query);
+								db.execSQL(query);
+							}
+						}
+				    }
+				} catch (SQLException e) {
+					Log.e(LastVikingGTD.LOG_TAG, "Failed to create database!");
+					Log.e(LastVikingGTD.LOG_TAG, "This SQL astatement failed: '" + q + "'");
+					e.printStackTrace();
+					LastVikingGTD.GetInstance().TerminateWithError("Failed to create database");
+				} catch (IOException e) {
+					Log.e(LastVikingGTD.LOG_TAG, "Failed to open upgrade script: " + e.getMessage());
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
@@ -114,7 +141,6 @@ public class DbAdapter {
 	DbAdapter(GtdContentProvider cp) 
 	{
 		cp_ = cp;
-		//context_ = ctx;
 		h_ = new DbHelper(cp.getContext());
 	}
 

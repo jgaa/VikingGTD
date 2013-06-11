@@ -1,0 +1,23 @@
+
+actions.repeat_type
+	0 = no repeat
+	1 = repeat after # units after completeted
+	2 = repeat after # units after the scheduled date
+	3 = repeat at next # unit after complete
+	
+actions.repeat_unit
+	0 = days
+	1 = weeks
+	2 = months
+	3 = years
+
+actions.repeat_after
+	If actions.repeat_type in (1,2), unit's after scheduled/completed date
+	If actions.repeat_type = 3:
+		if actions.repeat_unit = 0: Day of week, 
+			0 = first day of week (monday or sunday, depending on locale).
+			10 = first day of month
+			11 = last day of month 
+		if actions.repeat_unit = 1: invalid
+		if actions.repeat_unit = 2: Month in year
+		if actions.repeat_unit = 2: invalid
