@@ -20,4 +20,4 @@ actions.repeat_after
 			11 = last day of month 
 		if actions.repeat_unit = 1: invalid
 		if actions.repeat_unit = 2: Month in year
-		if actions.repeat_unit = 2: invalid
+		if actions.repeat_unit = 3: invalid

@@ -156,7 +156,7 @@ public class MainView extends Activity {
 			public void run() {
 				final XmlBackupRestore backup = new XmlBackupRestore();
 				final File path = backup.GetDefaultPath();
-				try {	
+				try {
 					backup.MakeDefaultDir();
 					backup.Backup(getContext(), path);
 					
@@ -225,6 +225,9 @@ public class MainView extends Activity {
 						final XmlBackupRestore restore = new XmlBackupRestore();
 						final File path = restore.GetDefaultPath();
 						try {
+							// TODO:Remove me
+							//restore.DownloadBackup(getContext(), path);
+							
 							// Reset the database
 							ContentResolver resolver = getContentResolver();
 							Uri uri = GtdContentProvider.ResetDatabaseHelperDef.CONTENT_URI;

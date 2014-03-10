@@ -162,4 +162,16 @@
 	<string name="import_task_list">Import from \'TaskList\' app</string>
 	<string name="backup_top_sdcard">Backup to sdcard</string>
 	<string name="restore_from_sdcard">Restore from sdcard</string>
+	<string-array name="repeat_types">
+		<item >No repeat</item>
+		<item ># @ after completeted</item>
+		<item ># @ after the scheduled date</item>
+		<item >At next # @ after complete</item>
+	</string-array>
+	<string-array name="repeat_unit_types">
+		<item >days</item>
+		<item >weeks</item>
+		<item >months</item>
+		<item >years</item>
+	</string-array>
 </resources>
