@@ -1,8 +1,5 @@
 package eu.lastviking.app.vgtd;
 
-
-// TODO: Make/find a replacement for the 100% CRAP Android Spinner!
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -332,7 +329,6 @@ public class WhenFragment extends Fragment {
 			try {
 				when_time_ctl_.setText(when_.getTimeAsString());
 			} catch (NoDateException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 				when_time_ctl_.setText(e1.getMessage());
 			}
@@ -344,7 +340,6 @@ public class WhenFragment extends Fragment {
 			try {
 				when_date_ctl_.setText(when_.getDateAsString());
 			} catch (NoDateException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				when_date_ctl_.setText(e.getMessage());
 			}

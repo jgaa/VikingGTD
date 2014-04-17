@@ -93,7 +93,7 @@ public class DbAdapter {
 			    }
 			} catch (SQLException e) {
 				Log.e(LastVikingGTD.LOG_TAG, "Failed to create database!");
-				Log.e(LastVikingGTD.LOG_TAG, "This SQL astatement failed: '" + q + "'");
+				Log.e(LastVikingGTD.LOG_TAG, "This SQL statement failed: '" + q + "'");
 				e.printStackTrace();
 				LastVikingGTD.GetInstance().TerminateWithError("Failed to create database");
 			}

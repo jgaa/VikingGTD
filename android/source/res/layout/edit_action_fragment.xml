@@ -4,7 +4,7 @@
         android:layout_height="fill_parent"
         android:orientation="vertical" >
 
-        <EditText
+    <EditText
             android:id="@+id/action_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,14 +18,14 @@
         <EditText
             android:id="@+id/action_descr"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="2"
             android:ems="10"
             android:gravity="center_vertical|top"
             android:hint="@string/description"
             android:inputType="textMultiLine" />
 
-        <GridLayout
+    <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -58,7 +58,7 @@
                 android:id="@+id/action_when_btn"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="..When"
+                android:text="@string/when_dot_dot"
                 android:drawableLeft="@android:drawable/ic_menu_my_calendar"
                 />
 
@@ -83,6 +83,21 @@
                 android:id="@+id/action_how"
                 android:entries="@array/focuses_needed" />
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/repeat"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Button
+                android:id="@+id/action_repeat_btn"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/repeat_dot_dot"
+                android:drawableLeft="@android:drawable/ic_menu_revert"
+                />
+
         </GridLayout>
 
-    </LinearLayout>
+</LinearLayout>

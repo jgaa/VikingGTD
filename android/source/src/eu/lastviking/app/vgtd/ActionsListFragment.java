@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -316,7 +317,106 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
 			return GtdContentProvider.ActionsDef.Fields.NAME.ordinal();
 		}
 		
-    }    
+    }
+
+    void HandleRepeat(final long actionId) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        long repeat_mode = 0;
+
+        {
+            // Check the replication mode only, since the common
+            // case is likely to be no repeat.
+            String[] colname = { GtdContentProvider.ActionsDef.REPEAT_TYPE };
+
+            Cursor c = resolver.query(Uri.parse(GtdContentProvider.ActionsDef.CONTENT_URI + "/" + actionId),
+                    colname, null, null, null);
+            if (c.moveToFirst()) {
+                try {
+                    repeat_mode = c.getLong(0);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    Toast.makeText(getActivity(), "Failed to query data: " + ex.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+            c.close();
+        }
+
+        RepeatData rd = new RepeatData();
+        rd.setMode(repeat_mode);
+        if (rd.mode_ == RepeatData.NO_REPEAT)
+            return; // Nothing more to do
+
+        // Get the full data record
+        Cursor c = resolver.query(Uri.parse(GtdContentProvider.ActionsDef.CONTENT_URI + "/" + actionId),
+                GtdContentProvider.ActionsDef.PROJECTION_ALL, null, null, null);
+        if (!c.moveToFirst()) {
+            Toast.makeText(getActivity(), "Failed to fetch data (second iteration)!",  Toast.LENGTH_LONG).show();
+            return; // No data - likely to be an error, unless synchronization just deleted it.
+        }
+
+        rd.setUnit(c.getLong(GtdContentProvider.ActionsDef.Fields.REPEAT_UNIT.ordinal()));
+        rd.setNumUnits(c.getLong(GtdContentProvider.ActionsDef.Fields.REPEAT_AFTER.ordinal()));
+
+        {
+            ContentValues new_action = new ContentValues();
+            DatabaseUtils.cursorRowToContentValues(c, new_action);
+            new_action.remove(GtdContentProvider.ActionsDef._ID);
+            new_action.remove(GtdContentProvider.ActionsDef.COMPLETED);
+            new_action.remove(GtdContentProvider.ActionsDef.COMPLETED_TIME);
+            new_action.remove(GtdContentProvider.ActionsDef.DUE_BY_TIME);
+            new_action.remove(GtdContentProvider.ActionsDef.DUE_TYPE);
+
+            final long scheduled_time = c.getLong(GtdContentProvider.ActionsDef.Fields.DUE_BY_TIME.ordinal()) * 1000;
+            final long completed_time = c.getLong(GtdContentProvider.ActionsDef.Fields.COMPLETED_TIME.ordinal());
+            int due_type = c.getInt(GtdContentProvider.ActionsDef.Fields.DUE_TYPE.ordinal());
+            When when;
+
+            // Deal with invalid entries
+            try {
+                When scheduled = new When(scheduled_time, due_type);
+                When completed = new When(completed_time, due_type);
+
+                Calendar calendar = rd.Calculate(scheduled.getCalendar(), completed.getCalendar());
+                if (calendar != null) {
+                    when = new When(calendar.getTimeInMillis(), due_type);
+                    new_action.put(GtdContentProvider.ActionsDef.DUE_BY_TIME, when.GetUnixTime());
+                    new_action.put(GtdContentProvider.ActionsDef.DUE_TYPE, when.getDueType().ordinal());
+                }
+            } catch (IllegalArgumentException ex) {
+                Toast.makeText(getActivity(), "Failed convert date: " + ex.getMessage(), Toast.LENGTH_LONG).show();
+                return;
+            } catch (NoDateException ex) {
+                Toast.makeText(getActivity(), "Failed convert date: " + ex.getMessage(), Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // Insert the new action to the database
+            try {
+                resolver.insert(GtdContentProvider.ActionsDef.CONTENT_URI, new_action);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                Toast.makeText(getActivity(), "Failed to insert data: " + ex.getMessage(), Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
+
+        // Now, just clear the repeat data on the old entry.
+        ContentValues old_action = new ContentValues();
+        old_action.put(GtdContentProvider.ActionsDef.REPEAT_TYPE, 0);
+        old_action.put(GtdContentProvider.ActionsDef.REPEAT_UNIT, 0);
+        old_action.put(GtdContentProvider.ActionsDef.REPEAT_AFTER, 0);
+
+        try {
+            resolver.update(Uri.parse(GtdContentProvider.ActionsDef.CONTENT_URI + "/" + actionId), old_action, null, null);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Toast.makeText(getActivity(), "Failed to update the old action: " + ex.getMessage(), Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        c.close();
+    }
     
     void SetCompleted(ItemData d, final boolean completed) {
 		
@@ -340,6 +440,10 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
     				Toast.makeText(getActivity(), "Failed to update data: " + ex.getMessage(), Toast.LENGTH_LONG).show();
     			}
     			d.completed_ = completed;
+
+                if (completed) {
+                    HandleRepeat(d.id_);
+                }
     		}
     	}
     }

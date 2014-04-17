@@ -225,7 +225,7 @@ public class MainView extends Activity {
 						final XmlBackupRestore restore = new XmlBackupRestore();
 						final File path = restore.GetDefaultPath();
 						try {
-							// TODO:Remove me
+                            // Experimental feature for devel
 							//restore.DownloadBackup(getContext(), path);
 							
 							// Reset the database

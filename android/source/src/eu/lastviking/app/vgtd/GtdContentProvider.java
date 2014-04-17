@@ -76,15 +76,20 @@ public class GtdContentProvider extends ContentProvider {
 		public static final String TIME_ESTIMATE = "time_estimate";
 		public static final String FOCUS_NEEDED = "focus_needed";
 		public static final String RELATED_TO = "related_to";
+        public static final String REPEAT_TYPE = "repeat_type";
+        public static final String REPEAT_UNIT = "repeat_unit";
+        public static final String REPEAT_AFTER = "repeat_after";
 		
 		public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.lastviking."+ CONTENT_PATH;
 		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/vnd.lastviking." + CONTENT_PATH;
 		
 		enum Fields { _ID, LIST_ID, PRIORITY, NAME, DESCR, CREATED_DATE, DUE_TYPE, DUE_BY_TIME, COMPLETED_TIME, COMPLETED, 
-			TIME_ESTIMATE, FOCUS_NEEDED, RELATED_TO };
+			TIME_ESTIMATE, FOCUS_NEEDED, RELATED_TO,
+            REPEAT_TYPE, REPEAT_UNIT, REPEAT_AFTER };
 		
 		public static final String[] PROJECTION_ALL = {_ID, LIST_ID, PRIORITY, NAME, DESCR, CREATED_DATE, DUE_TYPE,
-			DUE_BY_TIME, COMPLETED_TIME, COMPLETED, TIME_ESTIMATE, FOCUS_NEEDED, RELATED_TO };
+			DUE_BY_TIME, COMPLETED_TIME, COMPLETED, TIME_ESTIMATE, FOCUS_NEEDED, RELATED_TO,
+            REPEAT_TYPE, REPEAT_UNIT, REPEAT_AFTER };
 						
 		public static final String SORT_ORDER_DEFAULT = COMPLETED + " ASC " + PRIORITY + " ASC " + NAME + " ASC";
 	}
@@ -96,23 +101,6 @@ public class GtdContentProvider extends ContentProvider {
 		public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/vnd.lastviking." + CONTENT_PATH;
 		
 		public static final String LOCATION_ID = "location_id";
-		
-		/*public static final String[] PROJECTION_ALL = {
-			DbAdapter.ACTIONS_TABLE + "." + _ID, 
-			DbAdapter.ACTIONS_TABLE + "." + LIST_ID, 
-			DbAdapter.ACTIONS_TABLE + "." + PRIORITY, 
-			DbAdapter.ACTIONS_TABLE + "." + NAME, 
-			DbAdapter.ACTIONS_TABLE + "." + DESCR, 
-			DbAdapter.ACTIONS_TABLE + "." + CREATED_DATE, 
-			DbAdapter.ACTIONS_TABLE + "." + DUE_TYPE,
-			DbAdapter.ACTIONS_TABLE + "." + DUE_BY_TIME, 
-			DbAdapter.ACTIONS_TABLE + "." + COMPLETED_TIME, 
-			DbAdapter.ACTIONS_TABLE + "." + COMPLETED, 
-			DbAdapter.ACTIONS_TABLE + "." + TIME_ESTIMATE, 
-			DbAdapter.ACTIONS_TABLE + "." + FOCUS_NEEDED, 
-			DbAdapter.ACTIONS_TABLE + "." + RELATED_TO,
-			DbAdapter.LOCATIONS_TABLE + "." + LOCATION_ID 
-			};*/
 	}
 	
 	public static interface LocationsDef extends BaseColumns {

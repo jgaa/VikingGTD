@@ -165,7 +165,11 @@ public class XmlBackupRestore {
 				
 				SafeAttibute(GtdContentProvider.ActionsDef.TIME_ESTIMATE, GtdContentProvider.ActionsDef.Fields.TIME_ESTIMATE.ordinal(), c, x);
 				SafeAttibute(GtdContentProvider.ActionsDef.FOCUS_NEEDED, GtdContentProvider.ActionsDef.Fields.FOCUS_NEEDED.ordinal(), c, x);
-				SafeAttibute(GtdContentProvider.ActionsDef.RELATED_TO, GtdContentProvider.ActionsDef.Fields.RELATED_TO.ordinal(), c, x);				
+				SafeAttibute(GtdContentProvider.ActionsDef.RELATED_TO, GtdContentProvider.ActionsDef.Fields.RELATED_TO.ordinal(), c, x);
+
+                SafeAttibute(GtdContentProvider.ActionsDef.REPEAT_TYPE, GtdContentProvider.ActionsDef.Fields.REPEAT_TYPE.ordinal(), c, x);
+                SafeAttibute(GtdContentProvider.ActionsDef.REPEAT_UNIT, GtdContentProvider.ActionsDef.Fields.REPEAT_UNIT.ordinal(), c, x);
+                SafeAttibute(GtdContentProvider.ActionsDef.REPEAT_AFTER, GtdContentProvider.ActionsDef.Fields.REPEAT_AFTER.ordinal(), c, x);
 				
 				SafeText(GtdContentProvider.ActionsDef.DESCR, GtdContentProvider.ActionsDef.Fields.DESCR.ordinal(), c, x);
 				
@@ -382,7 +386,17 @@ public class XmlBackupRestore {
 		values.put(GtdContentProvider.ActionsDef.CREATED_DATE, x.getAttributeValue(null, "created_date"));
 		values.put(GtdContentProvider.ActionsDef.DUE_TYPE, x.getAttributeValue(null, "due_type"));
 		values.put(GtdContentProvider.ActionsDef.DUE_BY_TIME, x.getAttributeValue(null, "due_by_time"));
-		
+
+        {
+            // Repeat
+            String v = x.getAttributeValue(null, GtdContentProvider.ActionsDef.REPEAT_TYPE);
+            if ((v != null) && !v.isEmpty() && (!v.equals("1"))) {
+                values.put(GtdContentProvider.ActionsDef.REPEAT_TYPE, v);
+                values.put(GtdContentProvider.ActionsDef.REPEAT_UNIT, x.getAttributeValue(null, GtdContentProvider.ActionsDef.REPEAT_UNIT));
+                values.put(GtdContentProvider.ActionsDef.REPEAT_AFTER, x.getAttributeValue(null, GtdContentProvider.ActionsDef.REPEAT_AFTER));
+            }
+        }
+
 		String completed = x.getAttributeValue(null, "completed");
 		values.put(GtdContentProvider.ActionsDef.COMPLETED, completed);
 		if (completed.equals("1")) {

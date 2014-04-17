@@ -1,10 +1,15 @@
 
 actions.repeat_type
-	0 = no repeat
-	1 = repeat after # units after completeted
-	2 = repeat after # units after the scheduled date
-	3 = repeat at next # unit after complete
-	
+    To save space, we use the first 8 bits for mode, and
+    then the remaning bits for modifiers
+    Mode:
+	    0x000 =   no repeat
+	    0x001 =   repeat after # units after completed
+	    0x002 =   repeat after # units after the scheduled date
+	When:
+	    [default] repeat at next # unit after complete
+	    0x100 =   repeat at next # unit after scheduled
+
 actions.repeat_unit
 	0 = days
 	1 = weeks
@@ -12,12 +17,14 @@ actions.repeat_unit
 	3 = years
 
 actions.repeat_after
-	If actions.repeat_type in (1,2), unit's after scheduled/completed date
-	If actions.repeat_type = 3:
-		if actions.repeat_unit = 0: Day of week, 
-			0 = first day of week (monday or sunday, depending on locale).
-			10 = first day of month
-			11 = last day of month 
-		if actions.repeat_unit = 1: invalid
-		if actions.repeat_unit = 2: Month in year
-		if actions.repeat_unit = 3: invalid
+	If actions.repeat_type 'when' is 0: unit's after scheduled/completed date
+	If actions.repeat_type 'when' is 0x100:
+	    (unit_type is disabled/ignored)
+		Day of week (bits - allow multiple selections)
+			0 - 6 day of week (monday - sunday).
+			10 = first day of week
+			11 = last day of week
+			12 = first day of month
+			13 = last day of month
+			14 = first day of year
+			15 = last day of year

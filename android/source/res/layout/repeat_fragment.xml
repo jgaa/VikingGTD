@@ -4,34 +4,103 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <Spinner
-        android:id="@+id/repeat_mode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="3">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <EditText
-            android:id="@+id/num_untits"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number"
-            android:text="0" >
-
-            <requestFocus />
-        </EditText>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView"
+            android:singleLine="true"
+            android:text="Repeat" />
 
         <Spinner
-            android:id="@+id/unit_type"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/repeat_mode"
+            android:clickable="true"
+            android:focusable="false"
+            android:entries="@array/repeat_types"
+            android:prompt="@string/repeat" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:entries="@array/repeat_unit_types" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="When"
+            android:id="@+id/textView3" />
 
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/repeat_when"
+            android:entries="@array/repeat_when" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Unit"
+            android:id="@+id/textView2" />
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/repeat_unit"
+            android:entries="@array/repeat_unit_types"
+            android:prompt="@string/unit" />
+
+    </GridLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/repeat_after_unit"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="After"
+            android:id="@+id/textView4"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/repeat_units_value"
+            android:orientation="vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="days"
+            android:id="@+id/repeat_unit_name"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical" />
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/repeat_day_view" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/repeat_days_cont">
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

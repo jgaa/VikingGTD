@@ -404,6 +404,15 @@ public class PickFragment extends ActionsListFragment {
 					}
 				}
 				break;
+            case 4: // Repeat
+                if (d.GetSelected()) {
+                    if (filter.length() > 0) {
+                        filter.append(" AND ");
+                    }
+                    filter.append(GtdContentProvider.ActionsDef.REPEAT_TYPE + " > " + 0);
+                }
+                break;
+
 			}
 		}
 	}

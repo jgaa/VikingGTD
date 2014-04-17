@@ -87,6 +87,7 @@
 		<item >Unhide Completed</item>
 		<item >Loosely Scheduled </item>
 		<item >Uncheduled </item>
+        <item >Using repeat</item>
 	</string-array>
 	<string-array name="when_years">
 	    <item >Uset Year</item>
@@ -151,7 +152,7 @@
 	<string name="move">Move</string>
 	<string name="move_actions">Move Actions to List</string>
 	<string name="backup_done">Backup is complete</string>
-	<string name="backing_up">Bacing up. Please wait...</string>
+	<string name="backing_up">Backing up. Please wait...</string>
 	<string name="restoring">Restoring data. Please wait...</string>
 	<string name="restore_done">Restore complete.</string>
 	<string name="restore">Restore</string>
@@ -162,16 +163,38 @@
 	<string name="import_task_list">Import from \'TaskList\' app</string>
 	<string name="backup_top_sdcard">Backup to sdcard</string>
 	<string name="restore_from_sdcard">Restore from sdcard</string>
-	<string-array name="repeat_types">
-		<item >No repeat</item>
-		<item ># @ after completeted</item>
-		<item ># @ after the scheduled date</item>
-		<item >At next # @ after complete</item>
+    <string-array name="repeat_types">
+		<item >Never</item>
+		<item >When completed</item>
+		<item >When scheduled</item>
 	</string-array>
+    <string-array name="repeat_when">
+        <item >At date</item>
+        <item >At day</item>
+    </string-array>
 	<string-array name="repeat_unit_types">
 		<item >days</item>
 		<item >weeks</item>
 		<item >months</item>
 		<item >years</item>
 	</string-array>
+    <string name="repeat">Repeat</string>
+    <string name="unit">Unit</string>
+    <string name="when_dot_dot">..When</string>
+    <string name="repeat_dot_dot">..Repeat</string>
+    <string-array name="day_names">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>First day of the week</item>
+        <item>Last day of the week</item>
+        <item>First day of the month</item>
+        <item>Last day of the month</item>
+        <item>First day of the year</item>
+        <item>Last day of the year</item>
+    </string-array>
 </resources>

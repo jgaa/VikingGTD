@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eu.lastviking.app.vgtd"
-    android:versionCode="3"
-    android:versionName="0.03 BETA" >
+    android:versionCode="4"
+    android:versionName="0.20 BETA" >
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="19" />
     <compatible-screens></compatible-screens>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -33,6 +33,7 @@
         <activity android:name=".Action"/>
         <activity android:name=".WhenActivity"/>
         <activity android:name=".LocationsActivity"/>
+        <activity android:name=".RepeatActivity"/>
         
         <provider 
             android:name=".GtdContentProvider"

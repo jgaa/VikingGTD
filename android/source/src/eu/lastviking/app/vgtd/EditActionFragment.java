@@ -33,6 +33,7 @@ public class EditActionFragment extends Fragment {
 	private String TAG = "EditActionFragment";
 	public static final int RESULT_OK = 1;
 	private static final int RESULT_WHEN = 1;
+    private static final int RESULT_REPEAT = 2;
 	
 	public enum Priorities {
 		Critical,
@@ -90,6 +91,7 @@ public class EditActionFragment extends Fragment {
 	String desc_ = "";
 	int priority_ = 4; // Normal
 	When when_ = new When();
+    RepeatData repeat_ = new RepeatData();
 	List<MultiSpinner.Data> where_ = new ArrayList<MultiSpinner.Data>();
 	int how_ = FocusNeeded.Normal.ordinal();
 		
@@ -100,6 +102,7 @@ public class EditActionFragment extends Fragment {
 	Button when_btn_;
 	MultiSpinner where_ctl_;
 	Spinner how_ctl_;
+    Button repeat_btn_;
 	
 	
 	public EditActionFragment() {
@@ -119,6 +122,7 @@ public class EditActionFragment extends Fragment {
 		when_btn_ = (Button)view.findViewById(R.id.action_when_btn);
 		where_ctl_ =(MultiSpinner) view.findViewById(R.id.action_locations);
 		how_ctl_ = (Spinner)view.findViewById(R.id.action_how);
+        repeat_btn_ = (Button)view.findViewById(R.id.action_repeat_btn);
 		
 		when_btn_.setOnClickListener(new OnClickListener() {
 
@@ -132,6 +136,19 @@ public class EditActionFragment extends Fragment {
 				startActivityForResult(intent, RESULT_WHEN);
 			}
 		});
+
+        repeat_btn_.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent();
+               Bundle b = new Bundle();
+               b.putSerializable("repeat", repeat_);
+               intent.putExtras(b);
+               intent.setClass(getActivity(), RepeatActivity.class);
+               startActivityForResult(intent, RESULT_REPEAT);
+            }
+       });
 		
 		((VikingBackHandlerActivity)getActivity()).SetBackHandler(new VikingBackHandlerActivity.Handler() {
 			
@@ -197,6 +214,17 @@ public class EditActionFragment extends Fragment {
 				}
 			}
 			break;
+            case RESULT_REPEAT: {
+                Bundle b = data.getExtras();
+                if (null != b) {
+                    RepeatData r = (RepeatData) b.getSerializable("repeat");
+                    if (null != r) {
+                        repeat_ = r;
+                        repeat_btn_.setText(repeat_.toString());
+                    }
+                }
+            }
+            break;
 			default:
 				super.onActivityResult(resultCode, resultCode, data);
 			break;	
@@ -269,6 +297,7 @@ public class EditActionFragment extends Fragment {
 		descr_ctl_.setText(desc_);
 		priority_ctl_.setSelection(priority_);
 		when_btn_.setText(when_.toString());
+        repeat_btn_.setText(repeat_.toString());
 		how_ctl_.setSelection(how_);
 		where_ctl_.SetItems(where_, 
 				getActivity().getText(R.string.anywhere).toString(), 
@@ -293,6 +322,9 @@ public class EditActionFragment extends Fragment {
 				values.put(GtdContentProvider.ActionsDef.DUE_BY_TIME, when_.GetUnixTime());
 				values.put(GtdContentProvider.ActionsDef.DUE_TYPE, when_.getDueType().ordinal());
 				values.put(GtdContentProvider.ActionsDef.FOCUS_NEEDED, how_);
+                values.put(GtdContentProvider.ActionsDef.REPEAT_TYPE, repeat_.getMode());
+                values.put(GtdContentProvider.ActionsDef.REPEAT_UNIT, repeat_.getUnit());
+                values.put(GtdContentProvider.ActionsDef.REPEAT_AFTER, repeat_.getNumUnits());
 
 				ContentResolver resolver = getActivity().getContentResolver();
 
@@ -358,17 +390,33 @@ public class EditActionFragment extends Fragment {
 			name_ = c.getString(GtdContentProvider.ActionsDef.Fields.NAME.ordinal());
 			desc_ = c.getString(GtdContentProvider.ActionsDef.Fields.DESCR.ordinal());
 			priority_= c.getInt(GtdContentProvider.ActionsDef.Fields.PRIORITY.ordinal());
-			
-			final long time = c.getLong(GtdContentProvider.ActionsDef.Fields.DUE_BY_TIME.ordinal()) * 1000;
-			final int due_type = c.getInt(GtdContentProvider.ActionsDef.Fields.DUE_TYPE.ordinal());
-			
-			// Deal with invalid database entries 
-			try {
-				when_ = new When(time, due_type);
-			} catch(IllegalArgumentException ex) {
-				when_ = new When(); // Unset
-			}
-			
+
+            {
+                final long time = c.getLong(GtdContentProvider.ActionsDef.Fields.DUE_BY_TIME.ordinal()) * 1000;
+                final int due_type = c.getInt(GtdContentProvider.ActionsDef.Fields.DUE_TYPE.ordinal());
+
+                // Deal with invalid database entries
+                try {
+                    when_ = new When(time, due_type);
+                } catch (IllegalArgumentException ex) {
+                    when_ = new When(); // Unset
+                }
+            }
+
+            {
+                final long repeat_type = c.getLong(GtdContentProvider.ActionsDef.Fields.REPEAT_TYPE.ordinal());
+                final long repeat_unit = c.getLong(GtdContentProvider.ActionsDef.Fields.REPEAT_UNIT.ordinal());
+                final long repeat_after = c.getLong(GtdContentProvider.ActionsDef.Fields.REPEAT_AFTER.ordinal());
+
+                try {
+                    repeat_.setMode(repeat_type);
+                    repeat_.setUnit(repeat_unit);
+                    repeat_.setNumUnits(repeat_after);
+                } catch (IllegalArgumentException ex) {
+                    repeat_ = new RepeatData(); // Unset
+                }
+            }
+
 			list_id_ = c.getLong(GtdContentProvider.ActionsDef.Fields.LIST_ID.ordinal());
 			how_ = c.getInt(GtdContentProvider.ActionsDef.Fields.FOCUS_NEEDED.ordinal());
 			

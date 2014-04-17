@@ -194,6 +194,12 @@ class When extends Object implements Serializable
 			throw new NoDateException("No date is set");
 		return time_.getTime();
 	}
+
+    Calendar getCalendar() throws NoDateException {
+        if (type_ == DueTypes.NONE)
+            throw new NoDateException("No date is set");
+        return time_;
+    }
 	
 	public void SetTime(final long ms, final int type) throws IllegalArgumentException {
 		DueTypes dt = DueTypes.NONE; 
