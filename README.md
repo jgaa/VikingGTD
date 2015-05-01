@@ -15,7 +15,7 @@ productivity and almost removed stress from my life. No it's about
 time to make the real thing!
 
 There are already several good GTD applications available, but none
-that 100% filled my needs. So that is what I want to accomplish here:
+that 100% fills my needs. So this is what I want to accomplish here:
 The "GTD" application of my dreams. 
 
 I sincerely hope that this will also become the GTD application of
@@ -33,6 +33,8 @@ time there are no release you can try out.
  * A Cloud Server that handles synchronization between devices and backup.
 
 ## Architecture
+*This section is a bit technical, and primarily aimed at people with good
+technical skills, like engineers and software developers.*
 
 ### Abstract relationship between objects
 The following diagram is a draft for the relationship between objects.
@@ -63,18 +65,18 @@ only one device (laptop, tablet or phone) - and you don't need or want a "Cloud 
 application will work perfectly fine alone.
 
 ### Design Goals
- - The clients should work well as a stand-alone applications without the server back-end.
- - Good integration with popular applications.
+ - The Clients Application should work well as a stand-alone application.
+ - Good integration with other popular applications.
  - Client platforms: Linux, Windows, OS/X.
  - Mobile Platforms: Android, iOS.
  - Server Platforms: Linux, BSD
  - Use as few dependencies as possible.
  - Modern, efficient code (C++14)
- - Open APIs for other projects (server API based on gRPC, Android intents)
+ - Open APIs for other projects (server API based on gRPC, Android Intents)
  - Use very little power on mobile devices.
- - Distributed data architecture – Easy to switch between devices and just work.
+ - Distributed data architecture – Easy to switch between devices and just continue to work.
  - Frictionless work-flow and user interfaces.
- - Instant GUI response (max 100ms interactive response, max 1 Second to update UI)
+ - Instant GUI response (max 100ms interactive response, max 1 Second to update UI).
  - Security and Privacy. TLS over the wire. Allow and encourage in-house Server deployments.
  - No bugs, no Regressions (use unit tests and functional tests to validate all functionality).
  - Integrate with other systems trough standards whenever possible (WebDAV, CalDAV).
