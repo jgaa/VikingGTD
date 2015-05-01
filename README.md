@@ -57,10 +57,26 @@ This diagram shows where the data is located.
 Each device have it's own database. There is no need for Internet access in order
 to use any of the devices. Internet access is only required when you want to synchronize
 the local data with the Server. Normally, this will happen in the background when
-Internet is available - if you have linked the device with a server. If you only use
+Internet is available - if you have linked the device with a server. If you use
 only one device (laptop, tablet or phone) - and you don't need or want a "Cloud Backup" - the 
 application will work perfectly fine alone.
 
-
-
+### Design Goals
+ - The clients should work well as a stand-alone applications without the server back-end.
+ - Good integration with popular applications.
+ - Client platforms: Linux, Windows, OS/X.
+ - Mobile Platforms: Android, iOS.
+ - Server Platforms: Linux, BSD
+ - Use as few dependencies as possible.
+ - Modern, efficient code (C++14)
+ - Open APIs for other projects (server API based on gRPC, Android intents)
+ - Use very little power on mobile devices.
+ - Distributed data architecture – Easy to switch between devices and just work.
+ - Frictionless work-flow and user interfaces.
+ - Instant GUI response (max 100ms interactive response, max 1 Second to update UI)
+ - Security and Privacy. TLS over the wire. Allow and encourage in-house Server deployments.
+ - No bugs, no Regressions (use unit tests and functional tests to validate all functionality).
+ - Integrate with other systems trough standards whenever possible (WebDAV, CalDAV).
+ - Make the application easy to translate into new languages.
+ - Allow users to collaborate with Projects and to delegate Actions to others.
 
