@@ -84,4 +84,8 @@ application will work perfectly fine alone.
  - Allow users to collaborate with Projects and to delegate Actions to others.
 
 ## License
-VikingGTD is Released under GPLv3. It is free. As in Free Beer. As in Free Air.
+VikingGTD is released under GPLv3. It is Free. Free as in Free Beer. Free as in Free Air.
+
+No *In App* advertising. No collecting data. When you use VikingGTD - your privacy is 
+respected. You are the valued consumer of the product. You yourself is not, 
+and will never be, the product. That is how *real*, *Free* Software works.
