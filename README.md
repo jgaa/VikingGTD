@@ -1,10 +1,10 @@
-=VikingGTD=
+= VikingGTD =
 
-==Mission Statement==
+== Mission Statement ==
 
-''To create the perfect "Getting Things Done" software suite''
+'To create the perfect "Getting Things Done" software suite'
 
-==Background==
+== Background ==
 
 I stumbled upon David Allens brilliant book "Getting Things Done" 
 a few years ago. Like hundreds of thousands of busy people before me,
@@ -21,12 +21,12 @@ I sincerely hope that this will also become the GTD application of
 ''your'' dreams, and I am therefore very open for your suggestions and 
 thoughts.
 
-==Planned features in 2015==
+== Planned features in 2015 ==
  * The full "GTD" work-flow in a nice, rich PC and Mac application
  * A companion Android app that can do the basic operations when you are on the move
  * A Cloud server that handles syncronization between devices
 
-==Architecture==
+== Architecture ==
 
 The following diagram is a draft for the relationship between objects.
 A "World" in this context is a single instance of a backend (Cloud) server 
