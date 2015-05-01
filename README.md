@@ -52,6 +52,8 @@ individuals organize their *Contexts*, *Lists* and *Projects* in *Folders*.
 
 This diagram shows where the data is located. 
 
+![](doc/images/arcitecture_devices.png)
+
 Each device have it's own database. There is no need for Internet access in order
 to use any of the devices. Internet access is only required when you want to synchronize
 the local data with the Server. Normally, this will happen in the background when
@@ -59,7 +61,6 @@ Internet is available - if you have linked the device with a server. If you only
 only one device (laptop, tablet or phone) - and you don't need or want a "Cloud Backup" - the 
 application will work perfectly fine alone.
 
-![](doc/images/arcitecture_devices.png)
 
 
 
