@@ -11,7 +11,8 @@ a few years ago. Like hundreds of thousands of busy people before me,
 I realized that this "GTD" methodology may actually work. I tried it
 in my own "lite" version, and it did in fact work. Then I make a simple
 Android App (VikingGTD in Google Play) - and it radically changed my 
-productivity and almost removed stress from my life.
+productivity and almost removed stress from my life. No it's about
+time to make the real thing!
 
 There are already several good GTD applications available, but none
 that 100% filled my needs. So that is what I want to accomplish here:
