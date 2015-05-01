@@ -65,7 +65,7 @@ only one device (laptop, tablet or phone) - and you don't need or want a "Cloud 
 application will work perfectly fine alone.
 
 ### Design Goals
- - The Clients Application should work well as a stand-alone application.
+ - The Client Application should work well as a stand-alone application.
  - Good integration with other popular applications.
  - Client platforms: Linux, Windows, OS/X.
  - Mobile Platforms: Android, iOS.
@@ -83,3 +83,5 @@ application will work perfectly fine alone.
  - Make the application easy to translate into new languages.
  - Allow users to collaborate with Projects and to delegate Actions to others.
 
+## License
+VikingGTD is Released under GPLv3. It is free. As in Free Beer. As in Free Air.
