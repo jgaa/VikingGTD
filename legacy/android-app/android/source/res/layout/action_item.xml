@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal" >
+
+    <CheckBox
+        android:id="@+id/action_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="false"
+        android:layout_gravity="left"
+        android:layout_weight="1" />
+    
+    <ImageView
+        android:id="@+id/action_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="false"
+        android:layout_centerVertical="true"
+        android:layout_gravity="right"
+        android:baselineAlignBottom="false"
+        android:clickable="true"
+        android:cropToPadding="true"
+        android:paddingLeft="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/btn_check_buttonless_off" />
+    
+    <TextView
+        android:id="@+id/action_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_toLeftOf="@id/action_done"
+        android:layout_toRightOf="@id/action_selected"
+        android:clickable="false"
+        android:longClickable="false"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/action_properties"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/action_name"
+        android:layout_below="@id/action_name"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    
+</RelativeLayout>

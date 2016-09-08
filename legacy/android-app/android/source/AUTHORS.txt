@@ -1,0 +1,4 @@
+This project is hosted at: https://github.com/jgaa/VikingGTD
+Copyright 2013, 2014 by Jarle Aase. All rights reserved.
+
+VikingGTD is written and maintained by "Jarle Aase"

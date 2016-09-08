@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+    <EditText
+            android:id="@+id/action_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="@string/name" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/action_descr"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:ems="10"
+            android:gravity="center_vertical|top"
+            android:hint="@string/description"
+            android:inputType="textMultiLine" />
+
+    <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="0"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            android:rowCount="4" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/priority"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/action_priority"
+                android:entries="@array/priorities" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/when"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Button
+                android:id="@+id/action_when_btn"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/when_dot_dot"
+                android:drawableLeft="@android:drawable/ic_menu_my_calendar"
+                />
+
+            <TextView
+                android:id="@+id/action_where"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/where"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <eu.lastviking.app.vgtd.MultiSpinner
+                android:id="@+id/action_locations"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/how"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/action_how"
+                android:entries="@array/focuses_needed" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/repeat"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Button
+                android:id="@+id/action_repeat_btn"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/repeat_dot_dot"
+                android:drawableLeft="@android:drawable/ic_menu_revert"
+                />
+
+        </GridLayout>
+
+</LinearLayout>

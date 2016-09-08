@@ -1,0 +1,6 @@
+This project is hosted at: https://github.com/jgaa/VikingGTD
+
+This project (VikingGTD) is free software, licensed under GPLv3.
+
+See the file GPLv3.html for the details.
+
