@@ -4,7 +4,7 @@ This application implements what I believe is the most essential part of David A
 
 It's not a full blown GTD application - a lot of people (me included) are not ready to jump into that in one step. This application is for people who has grown out of the simple "to do apps" and "task managers" and need something a little better.
 
-Unlike most contemporary *"apps"*, it'f free and safe. There are no ads. No tracking. No "phone home". I respect your privacy and integrity, and I trust that you will write me a mail if you have some things you want to share with me.
+Unlike most contemporary *"apps"*, it's free and safe. There are no ads. No tracking. No "phone home". I respect your privacy and integrity, and I trust that you will write me a mail if you have some things you want to share with me.
 
 # Background.
 
