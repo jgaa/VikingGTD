@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:id="@+id/group_set_when_actions" 
+        android:title="@string/when" 
+        android:icon="@android:drawable/ic_menu_agenda" 
+        android:showAsAction="always" 
+        android:visible="false"/>
+    
+    <item android:id="@+id/group_delete_actions" 
+        android:title="@string/delete" 
+        android:icon="@android:drawable/ic_menu_delete" 
+        android:showAsAction="always" 
+        android:visible="false"/>
+    
+     <item android:id="@+id/group_move_actions" 
+        android:title="@string/move" 
+        android:icon="@android:drawable/ic_menu_sort_by_size" 
+        android:showAsAction="always" 
+        android:visible="false"/>
+    
+    <item android:id="@+id/add_action"  
+        android:showAsAction="ifRoom" 
+        android:title="@string/add" 
+        android:icon="@android:drawable/ic_menu_add"/>
+    
+    <item android:id="@+id/search_actions" 
+        android:title="@string/search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:showAsAction="ifRoom" />
+</menu>

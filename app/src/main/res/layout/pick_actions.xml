@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >    
+    
+    <LinearLayout
+        android:id="@+id/pick_filter_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <eu.lastviking.app.vgtd.MultiSpinner
+            android:id="@+id/pick_lists"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <eu.lastviking.app.vgtd.MultiSpinner
+            android:id="@+id/pick_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <eu.lastviking.app.vgtd.MultiSpinner
+            android:id="@+id/pick_where"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <eu.lastviking.app.vgtd.MultiSpinner
+            android:id="@+id/pick_how"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <eu.lastviking.app.vgtd.MultiSpinner
+            android:id="@+id/pick_when"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+        <eu.lastviking.app.vgtd.MultiSpinner
+            android:id="@+id/pick_misc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    
+	<ImageView
+    	android:id="@+id/pick_more_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center"
+        android:src="@android:drawable/ic_menu_more" />
+
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+    
+    <TextView android:id="@id/android:empty"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:text="@string/no_actions_pick"/>
+    
+</LinearLayout>
