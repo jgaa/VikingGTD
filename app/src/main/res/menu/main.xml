@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:id="@+id/define_locations" android:title="@string/define_locations"/>
+    <item android:id="@+id/import_task_list" android:title="@string/import_task_list"/>
+    <item android:id="@+id/backup_to_sdcard" android:title="@string/backup_top_sdcard"/>
+    <item android:id="@+id/restore_from_sdcard" android:title="@string/restore_from_sdcard"/>
+    
+</menu>
