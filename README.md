@@ -17,4 +17,6 @@ I am planning a full-blown GTD app (for desktop and mobile) with some friends. S
 
 There are some screenshots in the [doc](doc/) folder to give you an idea about what this app does.
 
+The app can be downloaded from the release menu above, or from [Google Play](https://play.google.com/store/apps/details?id=eu.lastviking.app.vgtd).
+
 Have fun!
