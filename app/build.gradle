@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 17
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "eu.lastviking.app.vgtd"
         minSdkVersion 14
-        targetSdkVersion 19
+        targetSdkVersion 30
     }
 
     buildTypes {
@@ -19,5 +19,5 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:18.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
