@@ -81,30 +81,30 @@ public class XmlBackupRestore {
 		
 	}
 	
-	public void DownloadBackup(Context ctx, File path)
-	{
-		String url = "http://37.157.169.85/df534b7e-ca67-4128-ad47-18236f12e556/backup.xml";
-		 try {
-		      URL u = new URL(url);
-		      URLConnection conn = u.openConnection();
-		      int contentLength = conn.getContentLength();
-
-		      DataInputStream stream = new DataInputStream(u.openStream());
-
-		        byte[] buffer = new byte[contentLength];
-		        stream.readFully(buffer);
-		        stream.close();
-
-		        DataOutputStream fos = new DataOutputStream(new FileOutputStream(path));
-		        fos.write(buffer);
-		        fos.flush();
-		        fos.close();
-		  } catch(FileNotFoundException e) {
-		      return; // swallow a 404
-		  } catch (IOException e) {
-		      return; // swallow a 404
-		  }
-	}
+//	public void DownloadBackup(Context ctx, File path)
+//	{
+//		String url = "http://192.168.1.1/secret-path/backup.xml";
+//		 try {
+//		      URL u = new URL(url);
+//		      URLConnection conn = u.openConnection();
+//		      int contentLength = conn.getContentLength();
+//
+//		      DataInputStream stream = new DataInputStream(u.openStream());
+//
+//		        byte[] buffer = new byte[contentLength];
+//		        stream.readFully(buffer);
+//		        stream.close();
+//
+//		        DataOutputStream fos = new DataOutputStream(new FileOutputStream(path));
+//		        fos.write(buffer);
+//		        fos.flush();
+//		        fos.close();
+//		  } catch(FileNotFoundException e) {
+//		      return; // swallow a 404
+//		  } catch (IOException e) {
+//		      return; // swallow a 404
+//		  }
+//	}
 	
 	private void DumpLists(ContentResolver resolver, XmlSerializer x) 
 			throws IllegalArgumentException, IllegalStateException, IOException {
