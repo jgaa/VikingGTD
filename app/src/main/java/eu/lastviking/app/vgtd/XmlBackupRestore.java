@@ -3,9 +3,11 @@ package eu.lastviking.app.vgtd;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -216,16 +218,16 @@ public class XmlBackupRestore {
 		c.close();
 	}
 
-	public void Restore(Context ctx, final File path) {
-		FileInputStream is = null;
+	public void Restore(Context ctx, final FileDescriptor is) {
+		//FileInputStream is = null;
 		
 		try {
 			ContentResolver resolver = ctx.getContentResolver();
-			is = new FileInputStream(path);
-			
+			//is = new FileInputStream(path);
+
 			XmlPullParser x = Xml.newPullParser();
 			x.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-			x.setInput(new InputStreamReader(is));
+			x.setInput(new FileReader(is));
 			x.nextTag();
 			
 			x.require(XmlPullParser.START_TAG, "", ROOT_ELEMENT);
@@ -246,14 +248,6 @@ public class XmlBackupRestore {
 			
 		} catch (Exception ex) { 
 			Log.e(TAG, "Caught exception: " + ex.getMessage());
-		} finally {
-			if (null != is) {
-				try {
-					is.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 	}
 	

@@ -89,6 +89,7 @@
     <string name="when_dot_dot">..When</string>
     <string name="repeat_dot_dot">..Repeat</string>
     <string name="export_backup">Export Backup file</string>
+    <string name="import_backup">Import Backup</string>
     <string-array name="priorities">
         <item>Critical</item>
         <item>Very important</item>

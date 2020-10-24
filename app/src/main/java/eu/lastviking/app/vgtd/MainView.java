@@ -1,6 +1,11 @@
 package eu.lastviking.app.vgtd;
 
 import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -16,6 +21,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +37,7 @@ public class MainView extends Activity {
 	private static Activity self_;
 	private ProgressDialog progress_dialog_ = null;
 	private Handler handler_;
+	Intent request_restore_intent;
 		
 	public MainView() {
 		super();
@@ -80,6 +87,8 @@ public class MainView extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		request_restore_intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+		request_restore_intent.setType("*/*");
 
 		// setup action bar for tabs
 		ActionBar action_bar = getActionBar();
@@ -140,9 +149,48 @@ public class MainView extends Activity {
     	case R.id.export_backup:
     		ExportBackup();
     		return true;
+		case R.id.import_backup:
+			ImportBackup();
+			return true;
     	default:
     		return super.onOptionsItemSelected(item);
     	}
+	}
+
+	private void ImportBackup() {
+		startActivityForResult(request_restore_intent, 0);
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode,
+								 Intent returnIntent) {
+		// If the selection didn't work
+		if (resultCode != RESULT_OK) {
+			// Exit without doing anything else
+			return;
+		} else {
+			// Get the file's content URI from the incoming Intent
+			Uri returnUri = returnIntent.getData();
+			/*
+			 * Try to open the file for "read" access using the
+			 * returned URI. If the file isn't found, write to the
+			 * error log and return.
+			 */
+			try {
+				/*
+				 * Get the content resolver instance for this context, and use it
+				 * to get a ParcelFileDescriptor for the file.
+				 */
+				ParcelFileDescriptor pathfd = getContentResolver().openFileDescriptor(returnUri, "r");
+				FileDescriptor fd = pathfd.getFileDescriptor();
+				Restore(fd);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				Log.e("MainActivity", "Import failed: "+ e.getMessage());
+				return;
+			}
+		}
 	}
 
 	private void ExportBackup() {
@@ -229,13 +277,21 @@ public class MainView extends Activity {
 	}
 	
 	private void Restore() {
-		
-		XmlBackupRestore probe = new XmlBackupRestore();
-		if (!probe.GetDefaultPath().canRead()) {
+		final File path = getBackupPath();
+		if (!path.canRead()) {
 			Toast.makeText(this, R.string.no_file_to_restore, Toast.LENGTH_LONG).show();
 			return;
 		}
 
+		try {
+			FileInputStream is = new FileInputStream(path);
+			Restore(is.getFD());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void Restore(final FileDescriptor fd) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.restore);
 		builder.setMessage(R.string.restore_confirmation);
@@ -251,18 +307,15 @@ public class MainView extends Activity {
 					@Override
 					public void run() {
 						final XmlBackupRestore restore = new XmlBackupRestore();
-						final File path = restore.GetDefaultPath();
+						//final File path = restore.GetDefaultPath();
 						try {
-                            // Experimental feature for devel
-							//restore.DownloadBackup(getContext(), path);
-							
 							// Reset the database
 							ContentResolver resolver = getContentResolver();
 							Uri uri = GtdContentProvider.ResetDatabaseHelperDef.CONTENT_URI;
 							resolver.delete(uri, null, null);
 							resolver.delete(GtdContentProvider.LocationsDef.CONTENT_URI, null, null);
 
-							restore.Restore(getContext(), path);
+							restore.Restore(getContext(), fd);
 
 							handler_.post(new Runnable() {
 								@Override
