@@ -386,7 +386,7 @@ public class XmlBackupRestore {
         {
             // Repeat
             String v = x.getAttributeValue(null, GtdContentProvider.ActionsDef.REPEAT_TYPE);
-            if ((v != null) && !v.isEmpty() && (!v.equals("1"))) {
+            if ((v != null) && !v.isEmpty() && (!v.equals("0"))) {
                 values.put(GtdContentProvider.ActionsDef.REPEAT_TYPE, v);
                 values.put(GtdContentProvider.ActionsDef.REPEAT_UNIT, x.getAttributeValue(null, GtdContentProvider.ActionsDef.REPEAT_UNIT));
                 values.put(GtdContentProvider.ActionsDef.REPEAT_AFTER, x.getAttributeValue(null, GtdContentProvider.ActionsDef.REPEAT_AFTER));

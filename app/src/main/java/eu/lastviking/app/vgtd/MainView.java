@@ -171,22 +171,11 @@ public class MainView extends Activity {
 		} else {
 			// Get the file's content URI from the incoming Intent
 			Uri returnUri = returnIntent.getData();
-			/*
-			 * Try to open the file for "read" access using the
-			 * returned URI. If the file isn't found, write to the
-			 * error log and return.
-			 */
 			try {
-				/*
-				 * Get the content resolver instance for this context, and use it
-				 * to get a ParcelFileDescriptor for the file.
-				 */
 				ParcelFileDescriptor pathfd = getContentResolver().openFileDescriptor(returnUri, "r");
 				FileDescriptor fd = pathfd.getFileDescriptor();
 				Restore(fd);
-
 			} catch (Exception e) {
-				e.printStackTrace();
 				Log.e("MainActivity", "Import failed: "+ e.getMessage());
 				return;
 			}
@@ -234,13 +223,7 @@ public class MainView extends Activity {
 			@Override
 			public void run() {
 				final XmlBackupRestore backup = new XmlBackupRestore();
-//				final File path = getExternalFilesDir(null);
-//				final File imagesDir = new File(path, "backups");
 				try {
-					//backup.MakeDefaultDir();
-//					if (!imagesDir.isDirectory()) {
-//						imagesDir.mkdir();
-//					}
 					backup.Backup(getContext(), getBackupPath());
 					
 					handler_.post(new Runnable() {
