@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
@@ -218,16 +219,16 @@ public class XmlBackupRestore {
 		c.close();
 	}
 
-	public void Restore(Context ctx, final FileDescriptor is) {
+	public void Restore(Context ctx, final InputStream is) {
 		//FileInputStream is = null;
 		
 		try {
 			ContentResolver resolver = ctx.getContentResolver();
-			//is = new FileInputStream(path);
+			InputStreamReader r = new InputStreamReader(is);
 
 			XmlPullParser x = Xml.newPullParser();
 			x.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-			x.setInput(new FileReader(is));
+			x.setInput(r);
 			x.nextTag();
 			
 			x.require(XmlPullParser.START_TAG, "", ROOT_ELEMENT);
@@ -301,7 +302,8 @@ public class XmlBackupRestore {
 		ContentValues values = new ContentValues();
 
 		values.put(GtdContentProvider.ListsDef._ID, x.getAttributeValue(null, "id"));
-		values.put(GtdContentProvider.ListsDef.NAME, x.getAttributeValue(null, "name"));
+		final String listName = x.getAttributeValue(null, "name");
+		values.put(GtdContentProvider.ListsDef.NAME, listName);
 		// Save and get ID
 		final Uri uri = resolver.insert(GtdContentProvider.ListsDef.CONTENT_URI, values);
 		final long list_id = ContentUris.parseId(uri);
@@ -310,8 +312,10 @@ public class XmlBackupRestore {
 		while (true) {
 			 switch (x.next()) {
 		        case XmlPullParser.END_TAG:
+					//Log.d(TAG, "Done Restoring list: " + listName);
 		        	return;
 		        case XmlPullParser.START_TAG:
+					//Log.d(TAG, "Restoring list: " + listName);
 		            name = x.getName();
 		            if (name.equals("actions")) {
 		            	RestoreActions(list_id, resolver, x);
@@ -510,7 +514,7 @@ public class XmlBackupRestore {
 		            name = x.getName();
 		            if (name.equals("row")) {
 		            	ContentValues cv = GetRowValues(x);
-		            	Log.d(TAG, "Restoring " + table + ": " + cv.toString());
+		            	//Log.d(TAG, "Restoring " + table + ": " + cv.toString());
 		            	resolver.insert(uri, cv);
 		            } else {
 		            	Skip(x);

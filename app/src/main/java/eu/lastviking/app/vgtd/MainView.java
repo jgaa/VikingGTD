@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -172,9 +173,8 @@ public class MainView extends Activity {
 			// Get the file's content URI from the incoming Intent
 			Uri returnUri = returnIntent.getData();
 			try {
-				ParcelFileDescriptor pathfd = getContentResolver().openFileDescriptor(returnUri, "r");
-				FileDescriptor fd = pathfd.getFileDescriptor();
-				Restore(fd);
+				InputStream inputStream= getContentResolver().openInputStream(returnUri);
+				Restore(inputStream);
 			} catch (Exception e) {
 				Log.e("MainActivity", "Import failed: "+ e.getMessage());
 				return;
@@ -268,13 +268,13 @@ public class MainView extends Activity {
 
 		try {
 			FileInputStream is = new FileInputStream(path);
-			Restore(is.getFD());
+			Restore(is);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void Restore(final FileDescriptor fd) {
+	private void Restore(final InputStream is) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.restore);
 		builder.setMessage(R.string.restore_confirmation);
@@ -298,7 +298,7 @@ public class MainView extends Activity {
 							resolver.delete(uri, null, null);
 							resolver.delete(GtdContentProvider.LocationsDef.CONTENT_URI, null, null);
 
-							restore.Restore(getContext(), fd);
+							restore.Restore(getContext(), is);
 
 							handler_.post(new Runnable() {
 								@Override
