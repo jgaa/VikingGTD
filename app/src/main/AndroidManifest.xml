@@ -2,42 +2,48 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eu.lastviking.app.vgtd"
     android:versionCode="4"
-    android:versionName="0.21 BETA" >
-
-    <compatible-screens></compatible-screens>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    android:versionName="0.22 BETA">
 
     <application
+        android:name=".LastVikingGTD"
+        android:allowBackup="true"
+        android:configChanges="orientation"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" 
-        android:name="eu.lastviking.app.vgtd.LastVikingGTD"
-        android:configChanges="orientation"
-        android:allowBackup="true">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainView"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name=".EditList"/>
-        <activity android:name=".Actions"/>
-        <activity android:name=".Action"/>
-        <activity android:name=".WhenActivity"/>
-        <activity android:name=".LocationsActivity"/>
-        <activity android:name=".RepeatActivity"/>
-        
-        <provider 
+        <activity android:name=".EditList" />
+        <activity android:name=".Actions" />
+        <activity android:name=".Action" />
+        <activity android:name=".WhenActivity" />
+        <activity android:name=".LocationsActivity" />
+        <activity android:name=".RepeatActivity" />
+        <provider
             android:name=".GtdContentProvider"
             android:authorities="eu.lastviking.app.vgtd.cp"
+            android:exported="false" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="eu.lastviking.app.vgtd.fileprovider"
             android:exported="false"
-            ></provider>
-       
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/backuppaths" />
+        </provider>
     </application>
+
+    <compatible-screens />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

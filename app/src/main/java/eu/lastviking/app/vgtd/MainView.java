@@ -22,6 +22,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.core.app.ShareCompat;
+import androidx.core.content.FileProvider;
+
 public class MainView extends Activity {
 	
 	private static final String TAG = "MainView";
@@ -133,16 +136,44 @@ public class MainView extends Activity {
     		return true;
     	case R.id.restore_from_sdcard:
     		Restore();
+    		return true; 
+    	case R.id.export_backup:
+    		ExportBackup();
     		return true;
     	default:
     		return super.onOptionsItemSelected(item);
     	}
 	}
-	
+
+	private void ExportBackup() {
+		try {
+			Uri uri = FileProvider.getUriForFile(getContext(), "eu.lastviking.app.vgtd.fileprovider", getBackupPath());
+			Intent intent = ShareCompat.IntentBuilder.from(this)
+					.setType("text/xml")
+					.setStream(uri)
+					.setChooserTitle("Choose bar")
+					.createChooserIntent()
+					.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+			startActivity(intent);
+		} catch (Exception e) {
+			Log.e("ExportBackup",
+					"The file " + getBackupPath() + " cannot be shared: " + e.getMessage());
+		}
+	}
+
 	private Context getContext() {
 		return this;
 	}
-	
+
+	public File getBackupPath() {
+		final File path = getExternalFilesDir(null);
+		final File imagesDir = new File(path, "backups");
+		if (!imagesDir.isDirectory()) {
+			imagesDir.mkdir();
+		}
+		return new File(imagesDir.getPath() + "/vGTD-Backup.xml");
+	}
 
 	private void Backup() {
 
@@ -155,10 +186,14 @@ public class MainView extends Activity {
 			@Override
 			public void run() {
 				final XmlBackupRestore backup = new XmlBackupRestore();
-				final File path = backup.GetDefaultPath();
+//				final File path = getExternalFilesDir(null);
+//				final File imagesDir = new File(path, "backups");
 				try {
-					backup.MakeDefaultDir();
-					backup.Backup(getContext(), path);
+					//backup.MakeDefaultDir();
+//					if (!imagesDir.isDirectory()) {
+//						imagesDir.mkdir();
+//					}
+					backup.Backup(getContext(), getBackupPath());
 					
 					handler_.post(new Runnable() {
 						@Override
@@ -175,13 +210,6 @@ public class MainView extends Activity {
 							Toast.makeText(getContext(), "Backup failed: " + ex.getMessage(), Toast.LENGTH_LONG).show();
 						}
 					});
-					
-					try {
-						// Protect the user from accidentally restoring from a broken backup
-						path.delete();
-					} catch (Exception exx) {
-						;
-					}
 					
 				} finally {
 					handler_.post(new Runnable() {

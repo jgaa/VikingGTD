@@ -5,5 +5,5 @@
     <item android:id="@+id/import_task_list" android:title="@string/import_task_list"/>
     <item android:id="@+id/backup_to_sdcard" android:title="@string/backup_top_sdcard"/>
     <item android:id="@+id/restore_from_sdcard" android:title="@string/restore_from_sdcard"/>
-    
+    <item android:id="@+id/export_backup" android:title="@string/export_backup"/>
 </menu>

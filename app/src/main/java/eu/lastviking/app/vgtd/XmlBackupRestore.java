@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -41,9 +43,11 @@ public class XmlBackupRestore {
 		return new File(GetDefaultDir().getPath() + "/backup.xml");
 	}
 	
-	
 	public void Backup(Context ctx, final File path) 
 			throws IllegalArgumentException, IllegalStateException, IOException {
+		//Date date = new Date() ;
+		//SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm") ;
+		//File my_path = new File(path.getPath() + "/vGTD-Backup_" + dateFormat.format(date) + ".tmp");
 		File my_path = new File(path.getPath() + ".tmp");
 		FileOutputStream file = new FileOutputStream(my_path);
 		Log.d(TAG, "Will backup to path: " + my_path.toString());
@@ -77,8 +81,6 @@ public class XmlBackupRestore {
 		path.renameTo(new File(path.getPath() + ".bak"));
 		my_path.renameTo(path);
 		my_path.setWritable(true, false);
-		
-		
 	}
 	
 //	public void DownloadBackup(Context ctx, File path)
