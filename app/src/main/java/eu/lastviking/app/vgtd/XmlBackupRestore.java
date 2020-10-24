@@ -1,27 +1,5 @@
 package eu.lastviking.app.vgtd;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import eu.lastviking.app.vgtd.EditActionFragment.Location;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -31,6 +9,18 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.util.Xml;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class XmlBackupRestore {
 
@@ -84,31 +74,6 @@ public class XmlBackupRestore {
 		my_path.renameTo(path);
 		my_path.setWritable(true, false);
 	}
-	
-//	public void DownloadBackup(Context ctx, File path)
-//	{
-//		String url = "http://192.168.1.1/secret-path/backup.xml";
-//		 try {
-//		      URL u = new URL(url);
-//		      URLConnection conn = u.openConnection();
-//		      int contentLength = conn.getContentLength();
-//
-//		      DataInputStream stream = new DataInputStream(u.openStream());
-//
-//		        byte[] buffer = new byte[contentLength];
-//		        stream.readFully(buffer);
-//		        stream.close();
-//
-//		        DataOutputStream fos = new DataOutputStream(new FileOutputStream(path));
-//		        fos.write(buffer);
-//		        fos.flush();
-//		        fos.close();
-//		  } catch(FileNotFoundException e) {
-//		      return; // swallow a 404
-//		  } catch (IOException e) {
-//		      return; // swallow a 404
-//		  }
-//	}
 	
 	private void DumpLists(ContentResolver resolver, XmlSerializer x) 
 			throws IllegalArgumentException, IllegalStateException, IOException {

@@ -1,12 +1,5 @@
 package eu.lastviking.app.vgtd;
 
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
@@ -30,6 +23,11 @@ import android.widget.Toast;
 
 import androidx.core.app.ShareCompat;
 import androidx.core.content.FileProvider;
+
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class MainView extends Activity {
 	
