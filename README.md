@@ -11,7 +11,7 @@ Unlike most contemporary *"apps"*, it's free and safe. There are no ads. No trac
 I wrote this app back in 2013 to get an idea on how to write apps for Android. -- And to get a light-weight GTD app for my own use. I have used it ever since. It's sqlite database on my device is getting larger every day - but the application still runs quickly and responsive on all devices I have tested it.
 
 # Status
-The app is now updated to Android Studio 3, so it should be easy to look closer at for any Android Developers.
+The app is now updated to Android Studio 4, so it should be easy to look closer at for any Android Developers.
 
 I am planning a full-blown GTD app (for desktop and mobile) with some friends. So this app is in maintainance mode.
 
