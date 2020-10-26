@@ -19,9 +19,9 @@ public class RepeatData implements Serializable {
     static final public int REPEAT_AT_DAY = 0x100;
 
     static final public int UNIT_DAYS = 0;
-    static final public int UNIT_WEEKS = 2;
-    static final public int UNIT_MONTHS = 3;
-    static final public int UNIT_YEARS = 4;
+    static final public int UNIT_WEEKS = 1;
+    static final public int UNIT_MONTHS = 2;
+    static final public int UNIT_YEARS = 3;
 
     static final int [] european_days = { 0, 1, 2, 3, 4, 5, 6 };
     static final int [] us_days = { 1, 2, 3, 4, 5, 6, 0 };

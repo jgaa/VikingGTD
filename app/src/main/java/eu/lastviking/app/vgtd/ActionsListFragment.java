@@ -324,7 +324,7 @@ public class ActionsListFragment extends ListFragment implements OnQueryTextList
         long repeat_mode = 0;
 
         {
-            // Check the replication mode only, since the common
+            // Check the repeat mode only, since the common
             // case is likely to be no repeat.
             String[] colname = { GtdContentProvider.ActionsDef.REPEAT_TYPE };
 
