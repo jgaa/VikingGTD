@@ -1,0 +1,25 @@
+Inspiriert durch das große Buch <i>Getting Things Done</i> von David Allan habe ich diese App geschrieben, weil ich sie dringend brauchte, um meine eigene Zeiteinteilung zu organisieren. Ich habe auf keiner Plattform etwas gefunden, das meinen Anforderungen entsprach:
+
+* Frei
+* Open Source
+* Erstellt nach den Prinzipien aus "Getting Things Done"
+* Sicher; keine unnötigen App-Berechtigungen, keine erzwungene Integration mit Google (oder irgendwelcher anderen) Services
+* Schnell und effizient in der Anwendung
+* Sicherheitsvorkehrungen gegen Datenverlust durch Unfälle in stressigen Umgebungen (zum Beispiel durch Abbrechen einer halb bearbeiteten Aufgabe durch Betätigen des "Zurück"-Buttons)
+* Professionell entworfen und implementiert (ich bin der amateurhaft implementierten "Apps" einfach müde)
+
+Diese Anforderungen wurden zu meiner Blaupause, als ich VikingGTD erstellte. VikingGTD ist frei von Augenschmaus und Animationen - dafür aber stattdessen sehr schnell und responsiv, auch wenn die Zahl der Aufgaben während der realen Nutzung durch viel beschäftigte Menschen wächst.
+
+<b>Features:</b>
+
+* Beliebige Anzahl von Aktionen in einer von beliebig vielen Listen
+* Jede Aktion kann mit wann, wo, wie und mit welcher Priorität konfiguriert werden. Diese Parameter können dann verwendet werden, um die Aktionen auf einfache Weise zu sortieren und neu zu organisieren
+* Suche in Listen und Aktionen
+* Schneller Zugriff auf Hauptfunktionalitäten und häufig verwendete Features
+* Einfaches Planen einer Aktion für jede Zeit, jedes Datum, jede Woche, jeden Monat oder jedes Jahr
+* Einfache und schnelle Umplanung einer oder mehrerer Aktionen
+* Keine eingebauten Beschränkungen, kein Gezeter über Geld – <b>KEINE WERBUNG</b>
+* Kein „ET nach Hause telefonieren“, Schnüffeln in privaten Daten oder anderes Fehlverhalten
+* Import von Daten aus der TaskList-App, sollte diese zuvor zum Einsatz gekommen sein
+* Export nach / Import von XML auf der SD-Karte für Backups und Umzug auf andere Geräte
+* Flexible automatische Wiederholung abgeschlossener Aktionen für wiederkehrende Aufgaben

@@ -1,0 +1,25 @@
+Inspired by the great book <i>Getting Things Done</i> by David Allan. This is a program I wrote because I badly needed it in order to organize my own time. I failed to find anything, on any platform, that satisfied my requirements:
+
+* Free
+* Preferably Open Source
+* Designed after the principles in "Getting Things Done"
+* Safe; no unnecessary app privileges, no enforced integration with Google (or any other) services in order to work.
+* Fast and efficient to work with
+* Safeguards against losing data by accidents in stressful environments (for example by cancelling a half edited task by hitting the Android back button).
+* Professionally designed and implemented (I'm just too tired with amateurish implemented "apps").
+
+These requirements became my blueprint when I built VikingGTD. VikingGTD is free of eye candy and animations – but in stead very fast and responsive, also when the number of tasks grows during real use by busy people.
+
+<b>Features:</b>
+
+* Any number of actions in one of any number of lists.</li>
+* Each action can be configured with when, where, how and at what priority. These parameters can then be used to easily sort trough and re-organize the actions.
+* Search in lists and actions.
+* Fast access to main functions and frequently used features
+* Easy to schedule an action to any time, date, week, month, or year.
+* Easy and fast to reschedule one or more actions.
+* No built in limitations, no nagging about money, ***NO ADS***
+* No phone home, sneaking in private data or other misbehaviour.
+* Import data from the TaskList app if you already use that to organize your life
+* Export to / import from xml on the sdcard for backup and move to other devices.
+* Flexible automatic repeat of completed actions for reoccurring tasks
