@@ -168,6 +168,7 @@ public class MainView extends Activity {
 		// If the selection didn't work
 		if (resultCode != RESULT_OK) {
 			// Exit without doing anything else
+			Toast.makeText(this, "Failed to get result: " + String.valueOf(resultCode), Toast.LENGTH_LONG).show();
 			return;
 		} else {
 			// Get the file's content URI from the incoming Intent
@@ -177,6 +178,7 @@ public class MainView extends Activity {
 				Restore(inputStream);
 			} catch (Exception e) {
 				Log.e("MainActivity", "Import failed: "+ e.getMessage());
+				Toast.makeText(this, "Import failed: "+ e.getMessage(), Toast.LENGTH_LONG).show();
 				return;
 			}
 		}
