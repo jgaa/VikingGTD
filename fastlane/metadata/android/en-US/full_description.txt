@@ -6,9 +6,13 @@ Inspired by the great book <i>Getting Things Done</i> by David Allan. This is a 
 * Safe; no unnecessary app privileges, no enforced integration with Google (or any other) services in order to work.
 * Fast and efficient to work with
 * Safeguards against losing data by accidents in stressful environments (for example by cancelling a half edited task by hitting the Android back button).
-* Professionally designed and implemented (I'm just too tired with amateurish implemented "apps").
 
-These requirements became my blueprint when I built VikingGTD. VikingGTD is free of eye candy and animations – but in stead very fast and responsive, also when the number of tasks grows during real use by busy people.
+These requirements became my blueprint when I built VikingGTD. VikingGTD is free of eye candy and animations – but in stead very fast and responsive, also when the number of tasks grows during real use by busy people. (The database on my device has more than 8000 actions).
+
+VikingGTD implements what I believe is the most essential part of David Allens <i>Getting Things done</i> system: To be able to put all the stuff in your life into a system (lists) you can trust 100%.
+
+It's not a full blown GTD application - a lot of people (me included) are not ready to jump into that in one step. This application is for people who has grown out of the simple "to do apps" and "task managers" and need something a little better.
+
 
 <b>Features:</b>
 
@@ -18,8 +22,5 @@ These requirements became my blueprint when I built VikingGTD. VikingGTD is free
 * Fast access to main functions and frequently used features
 * Easy to schedule an action to any time, date, week, month, or year.
 * Easy and fast to reschedule one or more actions.
-* No built in limitations, no nagging about money, ***NO ADS***
-* No phone home, sneaking in private data or other misbehaviour.
-* Import data from the TaskList app if you already use that to organize your life
-* Export to / import from xml on the sdcard for backup and move to other devices.
-* Flexible automatic repeat of completed actions for reoccurring tasks
+* Export to / import from xml on the sdcard for backup and move to other devices. (I use Nextcloud for backing up my app data).
+* Flexible automatic repeat of completed actions for reoccurring tasks (from "Feed the cat" the next day to "years into the future).
